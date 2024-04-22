@@ -1,19 +1,16 @@
-import useAuth from "../context/useAuth";
 import { useState } from "react";
 import heikoApi from "../service/myApi";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import useAuth from "./../context/useAuth";
 
-// http://localhost:5173/auth/signup
-
-function SignupPage() {
-  const { user } = useAuth();
+function LoginPage() {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
     password: "",
   });
   const [error, setError] = useState("");
-  const nav = useNavigate();
+  const { storeToken, authenticateUser } = useAuth();
 
   function handleChange(e) {
     const key = e.target.id;
@@ -24,17 +21,11 @@ function SignupPage() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      // si avatar + dans backend
-
-      // const fd = new FormData();
-      // fd.append("name", formState.name);
-      // fd.append("email", formState.email);
-      // fd.append("password", formState.password);
-      const response = await heikoApi.post("/auth/signup", formState);
+      const response = await heikoApi.post("/auth/login", formState);
       console.log(response);
-      if (response.status === 201) {
-        nav("/login");
-      }
+      const token = response.data.authToken;
+      storeToken(token);
+      await authenticateUser();
     } catch (error) {
       console.log(error.message);
       setError(error.response?.data?.message);
@@ -45,10 +36,11 @@ function SignupPage() {
   }
 
   const { name, email, password } = formState;
-
   return (
     <div>
-      <h2>Signup form</h2>
+      <h2>Login form</h2>
+
+      <p style={{ color: "red" }}>{error}</p>
 
       <form onSubmit={handleSubmit}>
         <div>
@@ -62,7 +54,7 @@ function SignupPage() {
           />
         </div>
         <div>
-          <label htmlFor="name">Email:</label>
+          <label htmlFor="email">Email: </label>
           <input
             type="email"
             id="email"
@@ -72,7 +64,7 @@ function SignupPage() {
           />
         </div>
         <div>
-          <label htmlFor="name">Password:</label>
+          <label htmlFor="password">Password: </label>
           <input
             type="password"
             id="password"
@@ -82,12 +74,12 @@ function SignupPage() {
           />
         </div>
         <button>Submit</button>
-        <p className="bg-myColor">
-          Already have an account? <Link to="/login">Login</Link>
+        <p>
+          Need an account? <Link to="/signup">Signup</Link>
         </p>
       </form>
     </div>
   );
 }
 
-export default SignupPage;
+export default LoginPage;

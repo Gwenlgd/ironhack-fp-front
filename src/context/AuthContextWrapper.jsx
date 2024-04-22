@@ -26,9 +26,14 @@ function AuthContextWrapper({ children }) {
       }
       const response = await heikoApi.get("/auth/verify", {
         headers: {
-          Authorization: `Bears ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
+
+      if (!response.data) {
+        setIsLoading(false);
+        return;
+      }
       setUser(response.data);
       setIsLoggedIn(true);
       setIsLoading(false);
