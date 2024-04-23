@@ -4,8 +4,10 @@ import { InputContext } from "./InputContext";
 
 const InputProvider = ({ children }) => {
   const [inputsData, setInputsData] = useState(null);
-  const [ingredientsList, setIngredientsList] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
+
+  const [ingredientSuggestions, setIngredientSuggestions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -71,7 +73,7 @@ const InputProvider = ({ children }) => {
     }
   }, []);
 
-  // INGREDIENTS :
+  // For Ingredients :
 
   // Function to add an ingredient to the selected list
   const addIngredient = useCallback((ingredient) => {
@@ -85,17 +87,35 @@ const InputProvider = ({ children }) => {
     );
   }, []);
 
-  // fetch ingredients for search bar when user creating input :
+  // fetch ingredients when user creating input :
   const fetchIngredients = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await heikoApi.get("/ingredients"); // Assuming the API supports a limit query
-      setIngredientsList(response.data);
+      const response = await heikoApi.get("/ingredients?limit=50"); // Assuming the API supports a limit query
+      setIngredients(response.data);
     } catch (error) {
       console.error("Failed to fetch ingredients", error);
       setError("Failed to fetch ingredients");
-      setIngredientsList([]);
+      setIngredients([]);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+  // fetch input from user with name of ingredient
+
+  const fetchInputIngredient = useCallback(async (query) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await heikoApi.get(
+        `/api/ingredients?name=${encodeURIComponent(query)}`
+      );
+      const data = await response.json();
+      setIngredients(data);
+    } catch (error) {
+      console.error("Failed to fetch ingredient suggestions", error);
+      setError("Failed to fetch ingredient suggestions");
     } finally {
       setLoading(false);
     }
@@ -109,11 +129,14 @@ const InputProvider = ({ children }) => {
         fetchInput,
         fetchAllInputs,
         upsertInput,
+        // fetchIngredientSuggestions,
+        fetchInputIngredient,
         addIngredient,
         removeIngredient,
         fetchIngredients,
         selectedIngredients,
-        ingredientsList,
+        ingredientSuggestions,
+        ingredients,
         loading,
         error,
       }}

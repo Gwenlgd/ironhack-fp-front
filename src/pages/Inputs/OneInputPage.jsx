@@ -57,6 +57,10 @@ function OneInputPage() {
           <p>No ingredients listed.</p>
         )}
       </div>
+
+      <h1 style={{ color: "red" }}>
+        Removed moods and symptoms, need to add them
+      </h1>
     </div>
   );
 }
