@@ -6,7 +6,7 @@ import heikoApi from "../../service/myApi";
 const InputForm = () => {
   const [date, setDate] = useState("");
   const [inputValue, setInputValue] = useState("");
-  const [filteredIngredients, setFilteredIngredients] = useState([]);
+  // const [ingredients, setIngredients] = useState([]);
   const [moods, setMoods] = useState([]);
   const [selectedMoods, setSelectedMoods] = useState([]);
   const [symptoms, setSymptoms] = useState([]);
@@ -16,10 +16,13 @@ const InputForm = () => {
   // Methods and states from context
   const {
     upsertInput,
+    // fetchIngredientSuggestions,
+    ingredientSuggestions,
+    fetchInputIngredient,
     addIngredient,
     // removeIngredient,
     selectedIngredients,
-    ingredientsList,
+    ingredients,
     fetchIngredients,
   } = useInput();
 
@@ -44,35 +47,57 @@ const InputForm = () => {
     fetchMoodsAndSymptoms();
   }, []);
 
-  // All Ingredients list > used in ingredients form
-  // ?? OK WORKING
   useEffect(() => {
-    fetchIngredients();
+    fetchIngredients(); // This will fetch 50 ingredients from the backend
   }, [fetchIngredients]);
 
-  // Filtering the list when user type
-  // ?? OK WORKING
+  // For INGREDIENTS FORM
   useEffect(() => {
-    setFilteredIngredients(
-      ingredientsList.filter((ingredient) =>
-        ingredient.name.toLowerCase().includes(inputValue.toLowerCase())
-      )
-    );
-  }, [inputValue, ingredientsList]);
+    if (inputValue) {
+      const timer = setTimeout(() => {
+        fetchInputIngredient(inputValue);
+      }, 300);
 
-  const handleInputIngrChange = (e) => {
-    setInputValue(e.target.value);
-  };
+      return () => clearTimeout(timer);
+    }
+  }, [inputValue, fetchInputIngredient]);
 
-  // Selection of the ingredient when clicking on the ingredient in the list
-  // ?? OK WORKING
   const handleIngredientSelect = (ingredient) => {
-    addIngredient(ingredient);
-    setInputValue(inputValue);
+    addIngredient(ingredient); // Add selected ingredient to context
+    setInputValue(""); // Clear the input field after selection
   };
 
   // const handleIngredientRemove = (ingredientId) => {
   //   removeIngredient(ingredientId); // Remove ingredient from selection
+  // };
+
+  // const handleInputIngrChange = (e) => {
+  //   const newValue = e.target.value;
+  //   console.log(e.target.value);
+  //   setInputValue(newValue);
+  //   handleInputIngrChange(newValue);
+  // };
+
+  // useEffect(() => {
+  //   if (inputValue) {
+  //     const timer = setTimeout(() => {
+  //       fetchIngredientSuggestions(inputValue);
+  //     }, 300);
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, [inputValue, fetchIngredientSuggestions]);
+
+  // const handleIngredientSearch = async (value) => {
+  //   if (!value) {
+  //     setIngredientSuggestions([]);
+  //     return;
+  //   }
+  //   fetchIngredientSuggestions(value);
+  // };
+
+  // const handleIngredientSelect = (ingredient) => {
+  //   setIngredients((prev) => [...prev, ingredient]);
+  //   setInputValue("");
   // };
 
   // END - ingredients form
@@ -118,7 +143,7 @@ const InputForm = () => {
     try {
       await upsertInput(inputData);
       alert("Input saved successfully!");
-      navigate(`/inputs`);
+      navigate("/inputs");
     } catch (error) {
       console.error("Error submitting input:", error);
       alert("Failed to save input: " + error.message);
@@ -127,6 +152,13 @@ const InputForm = () => {
 
   return (
     <>
+      <h2>List ingredients</h2>
+      <ul>
+        {ingredients.map((ingredient) => (
+          <li key={ingredient._id}>{ingredient.name}</li>
+        ))}
+      </ul>
+
       <form onSubmit={handleSubmit}>
         {/* DATE */}
         <div>
@@ -140,42 +172,33 @@ const InputForm = () => {
           />
         </div>
 
-        <div className="ingredients-input">
-          <label htmlFor="ingredient-search">Ingredients</label>
+        <div>
+          <label htmlFor="ingredients">Ingredients:</label>
           <input
             type="text"
-            id="ingredient-search"
             value={inputValue}
-            onChange={handleInputIngrChange}
-            autoComplete="off"
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyPress={(e) => {
+              if (e.key === "Enter" && inputValue) {
+                const selected = ingredientSuggestions.find(
+                  (ing) => ing.name === inputValue
+                );
+                if (selected) handleIngredientSelect(selected);
+                e.preventDefault(); // Prevent form submission on Enter
+              }
+            }}
+            list="ingredients-suggestions"
+            placeholder="Start typing..."
           />
-          {inputValue && (
-            <ul>
-              {filteredIngredients.map((ingredient) => (
-                // <li
-                //   key={ingredient._id}
-                //   onClick={() => handleIngredientSelect(ingredient)}
-                // >
-                //   {ingredient.name}
-                // </li>
-                <li
-                  key={ingredient._id}
-                  onClick={(e) => handleIngredientSelect(ingredient, e)}
-                >
-                  {ingredient.name}
-                </li>
+          {ingredientSuggestions.length > 0 ? (
+            <datalist id="ingredients-suggestions">
+              {ingredientSuggestions.map((ingredient) => (
+                <option key={ingredient._id} value={ingredient.name} />
               ))}
-            </ul>
+            </datalist>
+          ) : (
+            <p>No ingredients found.</p>
           )}
-        </div>
-
-        <div>
-          <h3>Selected Ingredients:</h3>
-          <ul>
-            {selectedIngredients.map((ingredient, index) => (
-              <li key={index}>{ingredient.name}</li>
-            ))}
-          </ul>
         </div>
 
         {/* MOODS */}
