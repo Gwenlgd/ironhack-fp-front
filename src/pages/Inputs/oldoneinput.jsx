@@ -36,6 +36,19 @@ function OneInputPage() {
     }
   }
 
+  async function updateInput() {
+    try {
+      const updatedData = {
+        ...inputData,
+        mood: [...inputData.mood, { _id: "newMoodId", name: "Happy" }],
+      };
+      await heikoApi.put(`/inputs/${inputId}`, updatedData);
+      fetchInput();
+    } catch (error) {
+      console.error("Failed to update input", error);
+    }
+  }
+
   async function deleteIngredient(ingredientId) {
     try {
       await heikoApi.delete(`/inputs/${inputId}/ingredient/${ingredientId}`);
