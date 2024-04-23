@@ -36,6 +36,25 @@ function OneInputPage() {
     }
   }
 
+  async function updateInput(changes) {
+    const payload = {
+      date: inputData.date,
+      ingredients:
+        changes.ingredients || inputData.ingredient.map((ing) => ing._id),
+      moods: changes.moods || inputData.mood.map((mood) => mood._id),
+      symptoms:
+        changes.symptoms || inputData.symptom.map((symptom) => symptom._id),
+    };
+
+    try {
+      const response = await heikoApi.post(`/inputs/upsert`, payload);
+      setInputData(response.data);
+      console.log("Input updated successfully");
+    } catch (error) {
+      console.error("Failed to update input", error);
+    }
+  }
+
   async function deleteIngredient(ingredientId) {
     try {
       await heikoApi.delete(`/inputs/${inputId}/ingredient/${ingredientId}`);
@@ -103,6 +122,18 @@ function OneInputPage() {
                 <li key={mood._id}>
                   {mood.name}{" "}
                   <button onClick={() => deleteMood(mood._id)}>Delete</button>
+                  <button
+                    onClick={() =>
+                      updateInput({
+                        moods: [
+                          ...inputData.mood.map((mood) => mood._id),
+                          existingMoodId,
+                        ],
+                      })
+                    }
+                  >
+                    Add Existing Mood
+                  </button>
                 </li>
               ))}
             </ul>
