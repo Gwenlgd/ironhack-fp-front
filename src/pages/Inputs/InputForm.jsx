@@ -1,15 +1,12 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useInput } from "../../context/InputContext";
-import heikoApi from "../../service/myApi";
 
 const InputForm = () => {
   const [date, setDate] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [filteredIngredients, setFilteredIngredients] = useState([]);
-  const [moods, setMoods] = useState([]);
   const [selectedMoods, setSelectedMoods] = useState([]);
-  const [symptoms, setSymptoms] = useState([]);
   const [selectedSymptoms, setSelectedSymptoms] = useState([]);
   const navigate = useNavigate();
 
@@ -17,38 +14,23 @@ const InputForm = () => {
   const {
     upsertInput,
     addIngredient,
-    // removeIngredient,
     selectedIngredients,
     ingredientsList,
+    moods,
+    symptoms,
     fetchIngredients,
+    fetchMoods,
+    fetchSymptoms,
+    handleRemoveItem,
   } = useInput();
-
-  useEffect(() => {
-    // !! add fetchMoodsandSymptoms to InputProvider
-    const fetchMoodsAndSymptoms = async () => {
-      try {
-        const [moodsResponse, symptomsResponse] = await Promise.all([
-          //!! see to put it inside context
-          heikoApi.get("/moods"),
-          heikoApi.get("/symptoms"),
-        ]);
-        setMoods(moodsResponse.data);
-        setSymptoms(symptomsResponse.data);
-        console.log("Fetched moods:", moodsResponse.data);
-        console.log("Fetched symptoms:", symptomsResponse.data);
-      } catch (err) {
-        console.error("Error fetching data:", err);
-      }
-    };
-
-    fetchMoodsAndSymptoms();
-  }, []);
 
   // All Ingredients list > used in ingredients form
   // ?? OK WORKING
   useEffect(() => {
     fetchIngredients();
-  }, [fetchIngredients]);
+    fetchMoods();
+    fetchSymptoms();
+  }, [fetchIngredients, fetchMoods, fetchSymptoms]);
 
   // Filtering the list when user type
   // ?? OK WORKING
@@ -71,13 +53,9 @@ const InputForm = () => {
     setInputValue(inputValue);
   };
 
-  // const handleIngredientRemove = (ingredientId) => {
-  //   removeIngredient(ingredientId); // Remove ingredient from selection
-  // };
+  // END - FORM PART INGREDIENTS
 
-  // END - ingredients form
-
-  // !! REMOVE THE CONSOLE.LOGS
+  // !! TO CHECK
   const handleMoodChange = (id) => {
     console.log("Changing mood selection for ID:", id);
 
@@ -85,13 +63,9 @@ const InputForm = () => {
       console.log("Previous selectedMoods:", prev);
 
       if (prev.includes(id)) {
-        const newMoods = prev.filter((item) => item !== id);
-        console.log("New selectedMoods after removal:", newMoods);
-        return newMoods;
+        return prev.filter((item) => item !== id);
       } else {
-        const newMoods = [...prev, id];
-        console.log("New selectedMoods after addition:", newMoods);
-        return newMoods;
+        return [...prev, id];
       }
     });
   };
@@ -152,12 +126,6 @@ const InputForm = () => {
           {inputValue && (
             <ul>
               {filteredIngredients.map((ingredient) => (
-                // <li
-                //   key={ingredient._id}
-                //   onClick={() => handleIngredientSelect(ingredient)}
-                // >
-                //   {ingredient.name}
-                // </li>
                 <li
                   key={ingredient._id}
                   onClick={(e) => handleIngredientSelect(ingredient, e)}
@@ -173,7 +141,15 @@ const InputForm = () => {
           <h3>Selected Ingredients:</h3>
           <ul>
             {selectedIngredients.map((ingredient, index) => (
-              <li key={index}>{ingredient.name}</li>
+              <li key={ingredient._id || index}>
+                {ingredient.name}
+
+                <button
+                  onClick={() => handleRemoveItem(ingredient._id, "ingredient")}
+                >
+                  Remove
+                </button>
+              </li>
             ))}
           </ul>
         </div>
