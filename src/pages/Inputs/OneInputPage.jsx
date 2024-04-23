@@ -32,7 +32,7 @@ function OneInputPage() {
           <ul>
             {inputsData.ingredient.map((item, index) => (
               <li key={index}>
-                Name: {item.name}, Category: {item.category}
+                <h2>Name: {item.name}</h2>, Category: {item.category}
                 {item.benefits && item.benefits.length > 0 && (
                   <>
                     <h4>Benefits</h4>
@@ -59,7 +59,7 @@ function OneInputPage() {
       </div>
 
       <h1 style={{ color: "red" }}>
-        Removed moods and symptoms, need to add them
+        Removed moods and symptoms because bug = need to add them
       </h1>
     </div>
   );
