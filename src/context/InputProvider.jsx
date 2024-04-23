@@ -4,11 +4,20 @@ import { InputContext } from "./InputContext";
 
 const InputProvider = ({ children }) => {
   const [inputsData, setInputsData] = useState(null);
-  const [ingredientsList, setIngredientsList] = useState([]);
-  const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // For get all
+  const [ingredientsList, setIngredientsList] = useState([]);
+  const [moods, setMoods] = useState([]);
+  const [symptoms, setSymptoms] = useState([]);
+
+  // Selected elements
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
+  const [selectedMoods, setSelectedMoods] = useState([]);
+  const [selectedSymptoms, setSelectedSymptoms] = useState([]);
+
+  // ? INPUTS
   // get one input :
   const fetchInput = useCallback(async (inputId) => {
     // ! useCallback : to avoid infinite loop when fetchInput
@@ -71,18 +80,13 @@ const InputProvider = ({ children }) => {
     }
   }, []);
 
-  // INGREDIENTS :
+  // ? END INPUTS
+
+  // ? INGREDIENTS :
 
   // Function to add an ingredient to the selected list
   const addIngredient = useCallback((ingredient) => {
     setSelectedIngredients((prev) => [...prev, ingredient]);
-  }, []);
-
-  // Function to remove an ingredient from the selected list
-  const removeIngredient = useCallback((ingredientId) => {
-    setSelectedIngredients((prev) =>
-      prev.filter((ingredient) => ingredient._id !== ingredientId)
-    );
   }, []);
 
   // fetch ingredients for search bar when user creating input :
@@ -90,7 +94,7 @@ const InputProvider = ({ children }) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await heikoApi.get("/ingredients"); // Assuming the API supports a limit query
+      const response = await heikoApi.get("/ingredients");
       setIngredientsList(response.data);
     } catch (error) {
       console.error("Failed to fetch ingredients", error);
@@ -101,6 +105,69 @@ const InputProvider = ({ children }) => {
     }
   }, []);
 
+  // ? END INGREDIENTS
+
+  // ? MOODS
+
+  // get all moods
+  const fetchMoods = useCallback(async () => {
+    setLoading(true);
+    try {
+      const response = await heikoApi.get("/moods");
+      setMoods(response.data);
+    } catch (error) {
+      console.error("Failed to fetch moods", error);
+      setError("Failed to fetch moods");
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+  // ? END MOODS
+
+  // ? SYMPTOMS
+
+  // get all symptoms
+
+  const fetchSymptoms = useCallback(async () => {
+    setLoading(true);
+    try {
+      const response = await heikoApi.get("/symptoms");
+      setSymptoms(response.data);
+    } catch (error) {
+      console.error("Failed to fetch symptoms", error);
+      setError("Failed to fetch symptoms");
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+  // ? END SYMPTOMS
+
+  // ? REMOVE FUNCTION
+  // ! work on every pages ?
+  const handleRemoveItem = useCallback(
+    (id, type) => {
+      const stateMap = {
+        ingredient: [selectedIngredients, setSelectedIngredients],
+        mood: [selectedMoods, setSelectedMoods],
+        symptom: [selectedSymptoms, setSelectedSymptoms],
+      };
+
+      const [state, setState] = stateMap[type] || [];
+
+      if (!setState) {
+        console.error("Error handleRemoveItem: Unhandled type", type);
+        return;
+      }
+
+      setState((prev) =>
+        prev.filter((item) =>
+          type === "ingredient" ? item._id !== id : item !== id
+        )
+      );
+    },
+    [selectedIngredients, selectedMoods, selectedSymptoms]
+  );
+
   return (
     <InputContext.Provider
       value={{
@@ -110,10 +177,16 @@ const InputProvider = ({ children }) => {
         fetchAllInputs,
         upsertInput,
         addIngredient,
-        removeIngredient,
-        fetchIngredients,
-        selectedIngredients,
         ingredientsList,
+        moods,
+        symptoms,
+        fetchIngredients,
+        fetchMoods,
+        fetchSymptoms,
+        selectedIngredients,
+        selectedMoods,
+        selectedSymptoms,
+        handleRemoveItem,
         loading,
         error,
       }}

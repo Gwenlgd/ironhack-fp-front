@@ -4,7 +4,8 @@ import { useInput } from "../../context/InputContext";
 
 function OneInputPage() {
   const { inputId } = useParams();
-  const { inputsData, fetchInput, loading, error } = useInput();
+  const { inputsData, fetchInput, loading, error, handleRemoveItem } =
+    useInput();
 
   useEffect(() => {
     if (inputId) {
@@ -32,7 +33,13 @@ function OneInputPage() {
           <ul>
             {inputsData.ingredient.map((item, index) => (
               <li key={index}>
-                <h2>Name: {item.name}</h2>, Category: {item.category}
+                <button
+                  onClick={() => handleRemoveItem(item._id, "ingredient")}
+                >
+                  Remove
+                </button>
+                <h2>Name: {item.name}</h2>
+                Category: {item.category}
                 {item.benefits && item.benefits.length > 0 && (
                   <>
                     <h4>Benefits</h4>
