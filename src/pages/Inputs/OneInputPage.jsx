@@ -1,133 +1,61 @@
-import useAuth from "../../context/useAuth";
-import heikoApi from "../../service/myApi";
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useInput } from "../../context/InputContext";
 
 function OneInputPage() {
-  const [inputData, setInputData] = useState(null);
-  const { isLoggedIn } = useAuth();
   const { inputId } = useParams();
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  const { inputsData, fetchInput, loading, error } = useInput();
 
   useEffect(() => {
     if (inputId) {
-      fetchInput();
+      fetchInput(inputId);
     }
-  }, [inputId]);
+  }, [inputId, fetchInput]);
 
-  async function fetchInput() {
-    setLoading(true);
-    try {
-      const { data } = await heikoApi.get(`/inputs/${inputId}`);
-      setInputData(data);
-    } catch (error) {
-      console.error("Failed to fetch input", error);
-    }
-    setLoading(false);
-  }
-
-  async function deleteInput() {
-    try {
-      await heikoApi.delete(`/inputs/${inputId}`);
-      navigate("/inputs");
-    } catch (error) {
-      console.error("Failed to delete input", error);
-    }
-  }
-
-  async function deleteIngredient(ingredientId) {
-    try {
-      await heikoApi.delete(`/inputs/${inputId}/ingredient/${ingredientId}`);
-      fetchInput();
-    } catch (error) {
-      console.error("Failed to delete ingredient", error);
-    }
-  }
-
-  async function deleteMood(moodId) {
-    try {
-      await heikoApi.delete(`/inputs/${inputId}/mood/${moodId}`);
-      fetchInput();
-    } catch (error) {
-      console.error("Failed to delete mood", error);
-    }
-  }
-
-  async function deleteSymptom(symptomId) {
-    try {
-      await heikoApi.delete(`/inputs/${inputId}/symptom/${symptomId}`);
-      fetchInput();
-    } catch (error) {
-      console.error("Failed to delete symptom", error);
-    }
-  }
-
-  if (loading || !inputData) return <p>Loading...</p>;
+  // if (loading || !inputsData) return <p>Loading...</p>;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+  if (!inputsData) return <p>No data found...</p>;
 
   return (
     <div>
       <h2>Input Details</h2>
-      <button onClick={deleteInput}>Delete Input</button>
-      <button onClick={updateInput}>Update Input</button>
+      {/* <button onClick={deleteInput}>Delete Input</button>
+      <button onClick={updateInput}>Update Input</button> */}
       <div>
         <p>
-          <strong>User:</strong> {inputData.user.name}
+          <strong>Date:</strong>
+          {new Date(inputsData.date).toLocaleDateString()}
         </p>
-        <p>
-          <strong>Date:</strong> {new Date(inputData.date).toLocaleDateString()}
-        </p>
-        <div>
-          <strong>Ingredients:</strong>
-          {inputData.ingredient.length > 0 ? (
-            <ul>
-              {inputData.ingredient.map((ing) => (
-                <li key={ing._id}>
-                  {ing.name}{" "}
-                  <button onClick={() => deleteIngredient(ing._id)}>
-                    Delete
-                  </button>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No ingredients</p>
-          )}
-        </div>
-
-        <div>
-          <strong>Moods:</strong>
-          {inputData.mood.length > 0 ? (
-            <ul>
-              {inputData.mood.map((mood) => (
-                <li key={mood._id}>
-                  {mood.name}{" "}
-                  <button onClick={() => deleteMood(mood._id)}>Delete</button>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No moods</p>
-          )}
-        </div>
-
-        <div>
-          <strong>Symptoms:</strong>
-          {inputData.symptom.length > 0 ? (
-            <ul>
-              {inputData.symptom.map((symptom) => (
-                <li key={symptom._id}>
-                  {symptom.name}{" "}
-                  <button onClick={() => deleteSymptom(symptom._id)}>
-                    Delete
-                  </button>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No symptoms</p>
-          )}
-        </div>
+        <h3>Ingredients added</h3>
+        {inputsData.ingredient && inputsData.ingredient.length > 0 ? (
+          <ul>
+            {inputsData.ingredient.map((item, index) => (
+              <li key={index}>
+                Name: {item.name}, Category: {item.category}
+                {item.benefits && item.benefits.length > 0 && (
+                  <>
+                    <h4>Benefits</h4>
+                    <ul>
+                      {item.benefits.map((benefit) => (
+                        <li key={benefit._id}>
+                          {" "}
+                          {/* Assuming each benefit has a unique _id */}
+                          Name: {benefit.title}
+                          {benefit.description && (
+                            <p>Description: {benefit.description}</p>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No ingredients listed.</p>
+        )}
       </div>
     </div>
   );

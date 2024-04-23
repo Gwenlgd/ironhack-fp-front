@@ -8,10 +8,14 @@ function HomePage() {
     <>
       {isLoggedIn ? (
         <>
-          <li>{/* <h3>Hello {user.name}</h3> */}</li>
+          <li>{<h3>Hello {user.name}</h3>}</li>
           <p>
             <Link to="/inputs">All your inputs</Link>
           </p>
+          <Link to="/add-input" className="button-link">
+            Add Input
+          </Link>{" "}
+          {/* Button styled as Link */}
         </>
       ) : (
         <>
