@@ -101,6 +101,25 @@ const InputProvider = ({ children }) => {
     }
   }, []);
 
+  //? Delete input from Inputs Page
+
+  const deleteInput = useCallback(async (inputId) => {
+    setLoading(true);
+    setError(null);
+    try {
+      await heikoApi.delete(`/inputs/${inputId}`);
+      setInputsData((currentInputs) =>
+        currentInputs.filter((input) => input._id !== inputId)
+      );
+      console.log("Input deleted successfully");
+    } catch (error) {
+      console.error("Failed to delete input", error);
+      setError("Failed to delete input");
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   // ? END INPUTS
 
   // ? INGREDIENTS :
@@ -232,6 +251,7 @@ const InputProvider = ({ children }) => {
         selectedSymptoms,
         handleRemoveItem,
         removeIngredientFromInput,
+        deleteInput,
         loading,
         error,
       }}

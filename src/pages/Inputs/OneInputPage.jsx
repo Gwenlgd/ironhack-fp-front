@@ -1,16 +1,19 @@
-import { useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useInput } from "../../context/InputContext";
 
 function OneInputPage() {
   const { inputId } = useParams();
+  const navigate = useNavigate();
+  const [deleted, setDeleted] = useState(false);
+
   const {
     oneInput,
     fetchInput,
     loading,
     error,
     removeIngredientFromInput,
-    handleRemoveItem,
+    deleteInput,
   } = useInput();
 
   useEffect(() => {
@@ -23,6 +26,24 @@ function OneInputPage() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
   if (!oneInput) return <p>No data found...</p>;
+
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure you want to delete this input?")) {
+      try {
+        await deleteInput(inputId);
+        setDeleted(true);
+        setTimeout(() => {
+          navigate("/inputs");
+        }, 2000);
+      } catch (error) {
+        console.error("Error deleting input:", error);
+      }
+    }
+  };
+
+  if (deleted) {
+    return <p>Input deleted successfully. Redirecting...</p>;
+  }
 
   // by category ?
   return (
@@ -85,9 +106,7 @@ function OneInputPage() {
         )}
       </div>
 
-      <h1 style={{ color: "red" }}>
-        Removed moods and symptoms because bug = need to add them
-      </h1>
+      <button onClick={handleDelete}>Remove Input</button>
     </div>
   );
 }
