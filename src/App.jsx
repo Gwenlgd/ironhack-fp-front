@@ -22,34 +22,37 @@ import InputForm from "./pages/Inputs/InputForm";
 /*Components*/
 import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage";
+import OneIngredientPage from "./pages/OneIngredientPage";
 
 function App() {
   return (
     <>
-      <AuthContextWrapper>
+      <ErrorBoundary>
         <InputProvider>
           <Navbar />
-          <ErrorBoundary>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
 
-              <Route element={<IsLoggedOut />}>
-                <Route path="/signup" element={<SignupPage />} />
-                <Route path="/login" element={<LoginPage />} />
-              </Route>
-              <Route element={<ProtectedRoute />}>
-                <Route path="/inputs" element={<InputsPage />} />
-                <Route path="/add-input" element={<InputForm />} />
-                <Route path="/inputs/:inputId" element={<OneInputPage />} />
-                <Route
-                  path="/inputs/update/:inputId"
-                  element={<UpdateOneInput />}
-                />
-              </Route>
-            </Routes>
-          </ErrorBoundary>
+            <Route element={<IsLoggedOut />}>
+              <Route path="/signup" element={<SignupPage />} />
+              <Route path="/login" element={<LoginPage />} />
+            </Route>
+            <Route element={<ProtectedRoute />}>
+              <Route path="/inputs" element={<InputsPage />} />
+              <Route path="/add-input" element={<InputForm />} />
+              <Route path="/inputs/:inputId" element={<OneInputPage />} />
+              <Route
+                path="/inputs/update/:inputId"
+                element={<UpdateOneInput />}
+              />
+            </Route>
+            <Route
+              path="/ingredients/:ingredientId"
+              element={<OneIngredientPage />}
+            />
+          </Routes>
         </InputProvider>
-      </AuthContextWrapper>
+      </ErrorBoundary>
     </>
   );
 }

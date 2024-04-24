@@ -1,8 +1,9 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import heikoApi from "../service/myApi";
 import { InputContext } from "./InputContext";
 
 const InputProvider = ({ children }) => {
+  const [oneInput, oneInputData] = useState(null);
   const [inputsData, setInputsData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -17,6 +18,11 @@ const InputProvider = ({ children }) => {
   const [selectedMoods, setSelectedMoods] = useState([]);
   const [selectedSymptoms, setSelectedSymptoms] = useState([]);
 
+  // Loading inputs before to avoid bug when new input
+  useEffect(() => {
+    fetchAllInputs();
+  }, []);
+
   // ? INPUTS
   // get one input :
   const fetchInput = useCallback(async (inputId) => {
@@ -25,7 +31,7 @@ const InputProvider = ({ children }) => {
     setError(null);
     try {
       const response = await heikoApi.get(`/inputs/${inputId}`);
-      setInputsData(response.data);
+      oneInputData(response.data);
       console.log(response.data);
     } catch (error) {
       console.error("Failed to fetch input", error);
@@ -34,6 +40,21 @@ const InputProvider = ({ children }) => {
       setLoading(false);
     }
   }, []);
+  // const fetchInput = useCallback(async (inputId) => {
+  //   // ! useCallback : to avoid infinite loop when fetchInput
+  //   setLoading(true);
+  //   setError(null);
+  //   try {
+  //     const response = await heikoApi.get(`/inputs/${inputId}`);
+  //     setInputsData(response.data);
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.error("Failed to fetch input", error);
+  //     setError("Failed to fetch input");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }, []);
 
   // get all inputs :
 
@@ -168,10 +189,34 @@ const InputProvider = ({ children }) => {
     [selectedIngredients, selectedMoods, selectedSymptoms]
   );
 
+  //!! not working
+  const removeIngredientFromInput = useCallback(
+    async (inputId, ingredientId) => {
+      setLoading(true);
+      try {
+        await heikoApi.delete(`/inputs/${inputId}/ingredients/${ingredientId}`);
+        setInputsData((currentData) => ({
+          ...currentData,
+          ingredient: currentData.ingredient.filter(
+            (item) => item._id !== ingredientId
+          ),
+        }));
+      } catch (error) {
+        console.error("Failed to remove ingredient", error);
+        setError("Failed to remove ingredient");
+      } finally {
+        setLoading(false);
+      }
+    },
+    []
+  );
+
   return (
     <InputContext.Provider
       value={{
         inputsData,
+        oneInput,
+        oneInputData,
         setInputsData,
         fetchInput,
         fetchAllInputs,
@@ -187,6 +232,7 @@ const InputProvider = ({ children }) => {
         selectedMoods,
         selectedSymptoms,
         handleRemoveItem,
+        removeIngredientFromInput,
         loading,
         error,
       }}
