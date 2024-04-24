@@ -1,13 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../context/useAuth";
+import React, { useState } from "react";
+import CalendarComponent from "../components/Calendar/CalendarComponent";
+import { format } from "date-fns";
 
 function HomePage() {
   const { isLoggedIn, user } = useAuth();
+  const navigate = useNavigate();
+  const [value, onChange] = useState(new Date());
+
+  const handleDateClick = (value) => {
+    const localDate = new Date(value);
+
+    const selectedDate = localDate.toISOString().split("T")[0];
+    navigate(`/add-input?date=${selectedDate}`);
+  };
 
   return (
     <>
       {isLoggedIn ? (
         <>
+          <CalendarComponent onChange={handleDateClick} value={value} />
           <li>{<h3>Hello {user.name}</h3>}</li>
           <p>
             <Link to="/inputs">All your inputs</Link>

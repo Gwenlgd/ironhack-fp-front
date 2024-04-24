@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useInput } from "../../context/InputContext";
 
 const InputForm = () => {
-  const [date, setDate] = useState("");
+  // for calendar
+  const location = useLocation();
+  const [date, setDate] = useState(() => {
+    const query = new URLSearchParams(location.search);
+    return query.get("date") || new Date().toISOString().slice(0, 10);
+  });
+
   const [inputValue, setInputValue] = useState("");
   const [filteredIngredients, setFilteredIngredients] = useState([]);
   const [selectedMoods, setSelectedMoods] = useState([]);
