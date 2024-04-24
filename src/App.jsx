@@ -23,6 +23,7 @@ import InputForm from "./pages/Inputs/InputForm";
 import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage";
 import OneIngredientPage from "./pages/OneIngredientPage";
+import CalendarComponent from "./components/Calendar/CalendarComponent";
 
 function App() {
   return (
@@ -31,7 +32,8 @@ function App() {
         <InputProvider>
           <Navbar />
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage />}></Route>
+            <Route path="/calendar" element={<CalendarComponent />} />
 
             <Route element={<IsLoggedOut />}>
               <Route path="/signup" element={<SignupPage />} />
