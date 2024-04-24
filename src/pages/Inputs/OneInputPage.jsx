@@ -4,8 +4,14 @@ import { useInput } from "../../context/InputContext";
 
 function OneInputPage() {
   const { inputId } = useParams();
-  const { oneInput, fetchInput, loading, error, removeIngredientFromInput } =
-    useInput();
+  const {
+    oneInput,
+    fetchInput,
+    loading,
+    error,
+    removeIngredientFromInput,
+    handleRemoveItem,
+  } = useInput();
 
   useEffect(() => {
     if (inputId) {
@@ -39,7 +45,7 @@ function OneInputPage() {
                     removeIngredientFromInput(oneInput._id, item._id)
                   }
                 >
-                  Remove
+                  Remove not working?
                 </button>
 
                 <Link to={`/ingredients/${item._id}`}>

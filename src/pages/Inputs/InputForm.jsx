@@ -50,7 +50,7 @@ const InputForm = () => {
   // ?? OK WORKING
   const handleIngredientSelect = (ingredient) => {
     addIngredient(ingredient);
-    setInputValue(inputValue);
+    setInputValue("");
   };
 
   // END - FORM PART INGREDIENTS

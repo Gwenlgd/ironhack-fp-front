@@ -165,12 +165,11 @@ const InputProvider = ({ children }) => {
 
   // ? REMOVE FUNCTION
   // ! work on every pages ?
+  // ? remove ingredient from inputPage
   const handleRemoveItem = useCallback(
     (id, type) => {
       const stateMap = {
         ingredient: [selectedIngredients, setSelectedIngredients],
-        mood: [selectedMoods, setSelectedMoods],
-        symptom: [selectedSymptoms, setSelectedSymptoms],
       };
 
       const [state, setState] = stateMap[type] || [];
@@ -186,7 +185,7 @@ const InputProvider = ({ children }) => {
         )
       );
     },
-    [selectedIngredients, selectedMoods, selectedSymptoms]
+    [selectedIngredients]
   );
 
   //!! not working
