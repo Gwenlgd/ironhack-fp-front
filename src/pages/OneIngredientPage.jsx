@@ -8,11 +8,12 @@ function OneIngredientPage() {
   const [loading, setLoading] = useState(true); // Initially set loading to true
   const [error, setError] = useState(null);
 
+  // Later add reco ?
   useEffect(() => {
     const fetchIngredient = async () => {
       try {
         // Assuming heikoApi has a method to get an ingredient
-        const data = await heikoApi.getIngredient(ingredientId);
+        const { data } = await heikoApi.get(`ingredients/${ingredientId}`);
         setIngredient(data);
         setLoading(false); // Set loading to false after setting the ingredient
       } catch (err) {
