@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useInput } from "../../context/InputContext";
 
 function OneInputPage() {
   const { inputId } = useParams();
-  const { inputsData, fetchInput, loading, error, handleRemoveItem } =
+  const { oneInput, fetchInput, loading, error, removeIngredientFromInput } =
     useInput();
 
   useEffect(() => {
@@ -13,10 +13,10 @@ function OneInputPage() {
     }
   }, [inputId, fetchInput]);
 
-  // if (loading || !inputsData) return <p>Loading...</p>;
+  // if (loading || !oneInput) return <p>Loading...</p>;
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
-  if (!inputsData) return <p>No data found...</p>;
+  if (!oneInput) return <p>No data found...</p>;
 
   return (
     <div>
@@ -26,19 +26,22 @@ function OneInputPage() {
       <div>
         <p>
           <strong>Date:</strong>
-          {new Date(inputsData.date).toLocaleDateString()}
+          {new Date(oneInput.date).toLocaleDateString()}
         </p>
         <h3>Ingredients added</h3>
-        {inputsData.ingredient && inputsData.ingredient.length > 0 ? (
+        {oneInput.ingredient && oneInput.ingredient.length > 0 ? (
           <ul>
-            {inputsData.ingredient.map((item, index) => (
+            {oneInput.ingredient.map((item, index) => (
               <li key={index}>
                 <button
-                  onClick={() => handleRemoveItem(item._id, "ingredient")}
+                  onClick={() =>
+                    removeIngredientFromInput(oneInput._id, item._id)
+                  }
                 >
                   Remove
                 </button>
                 <h2>Name: {item.name}</h2>
+                <Link to={`/ingredients/${item._id}`}>{item.name}</Link>
                 Category: {item.category}
                 {item.benefits && item.benefits.length > 0 && (
                   <>
@@ -62,6 +65,32 @@ function OneInputPage() {
           </ul>
         ) : (
           <p>No ingredients listed.</p>
+        )}
+      </div>
+
+      <div>
+        <strong>Moods:</strong>
+        {oneInput.mood && oneInput.mood.length > 0 ? (
+          <ul>
+            {oneInput.mood.map((mood) => (
+              <li key={mood._id}>{mood.name} </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No moods</p>
+        )}
+      </div>
+
+      <div>
+        <strong>Symptoms:</strong>
+        {oneInput.symptom.length > 0 ? (
+          <ul>
+            {oneInput.symptom.map((symptom) => (
+              <li key={symptom._id}>{symptom.name} </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No symptoms</p>
         )}
       </div>
 
