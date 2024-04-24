@@ -18,6 +18,7 @@ function OneInputPage() {
   if (error) return <p>Error: {error}</p>;
   if (!oneInput) return <p>No data found...</p>;
 
+  // by category ?
   return (
     <div>
       <h2>Input Details</h2>
@@ -40,26 +41,10 @@ function OneInputPage() {
                 >
                   Remove
                 </button>
-                <h2>Name: {item.name}</h2>
-                <Link to={`/ingredients/${item._id}`}>{item.name}</Link>
-                Category: {item.category}
-                {item.benefits && item.benefits.length > 0 && (
-                  <>
-                    <h4>Benefits</h4>
-                    <ul>
-                      {item.benefits.map((benefit) => (
-                        <li key={benefit._id}>
-                          {" "}
-                          {/* Assuming each benefit has a unique _id */}
-                          Name: {benefit.title}
-                          {benefit.description && (
-                            <p>Description: {benefit.description}</p>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                )}
+
+                <Link to={`/ingredients/${item._id}`}>
+                  <h2>Name: {item.name}</h2>
+                </Link>
               </li>
             ))}
           </ul>
