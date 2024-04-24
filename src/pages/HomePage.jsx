@@ -20,6 +20,7 @@ function HomePage() {
     <>
       {isLoggedIn ? (
         <>
+          <h1 className="text-3xl font-bold underline">Hello world!</h1>
           <CalendarComponent onChange={handleDateClick} value={value} />
           <li>{<h3>Hello {user.name}</h3>}</li>
           <p>
