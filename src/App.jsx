@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import "./App.css";
+// import "./App.css";
 import ErrorBoundary from "./components/Error/ErrorBoundary";
 import AuthContextWrapper from "./context/AuthContextWrapper";
 
@@ -24,6 +24,11 @@ import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage";
 import OneIngredientPage from "./pages/OneIngredientPage";
 import CalendarComponent from "./components/Calendar/CalendarComponent";
+import BottomNavbar from "./components/Navbar/BottomNavBar";
+import ProfilePage from "./pages/profile/ProfilePage";
+import Ingredients from "./pages/Ingredients/Ingredients";
+import Moods from "./pages/Moods/Moods";
+import Symptoms from "./pages/Symptoms/Symptoms";
 
 function App() {
   return (
@@ -31,15 +36,20 @@ function App() {
       <ErrorBoundary>
         <InputProvider>
           <Navbar />
+          <BottomNavbar />
           <Routes>
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/calendar" element={<CalendarComponent />} />
+            <Route path="/ingredients" element={<Ingredients />} />
+            <Route path="/moods" element={<Moods />} />
+            <Route path="/symptoms" element={<Symptoms />} />
 
             <Route element={<IsLoggedOut />}>
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/login" element={<LoginPage />} />
             </Route>
             <Route element={<ProtectedRoute />}>
+              <Route path="/profil" element={<ProfilePage />} />
               <Route path="/inputs" element={<InputsPage />} />
               <Route path="/add-input" element={<InputForm />} />
               <Route path="/inputs/:inputId" element={<OneInputPage />} />

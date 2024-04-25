@@ -5,7 +5,7 @@ import CalendarComponent from "../components/Calendar/CalendarComponent";
 import { format } from "date-fns";
 
 function HomePage() {
-  const { isLoggedIn, user } = useAuth();
+  const { isLoggedIn, user, logout } = useAuth();
   const navigate = useNavigate();
   const [value, onChange] = useState(new Date());
 
@@ -20,20 +20,24 @@ function HomePage() {
     <>
       {isLoggedIn ? (
         <>
-          <h1 className="text-3xl font-bold underline">Hello world!</h1>
-          <CalendarComponent onChange={handleDateClick} value={value} />
-          <li>{<h3>Hello {user.name}</h3>}</li>
+          {/* <CalendarComponent onChange={handleDateClick} value={value} /> */}
+          <h1>HomePage</h1>
+          {<h3>Hello {user.name}</h3>}
           <p>
             <Link to="/inputs">All your inputs</Link>
           </p>
           <Link to="/add-input" className="button-link">
             Add Input
           </Link>{" "}
-          {/* Button styled as Link */}
+          <button onClick={logout}>Logout</button>
         </>
       ) : (
         <>
-          <h3>Please sign up or log in</h3>
+          <h3>Home Please sign up or log in</h3>
+          <p>
+            Need to change and be able to see something here even if not logged
+            in
+          </p>
           <li>
             <Link to={"/signup"}>Signup</Link>
           </li>

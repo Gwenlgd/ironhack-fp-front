@@ -5,7 +5,7 @@ function Navbar() {
   const { isLoggedIn, logout, user } = useAuth();
 
   return (
-    <nav>
+    <nav className="top-navbar">
       <ul>
         <li>
           <Link to={"/"}>Home</Link>
