@@ -1,7 +1,33 @@
-* {
+*,
+*:after,
+*:before {
   box-sizing: border-box;
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "Inter", sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f9;
+}
+
+/* CSS for hiding the bottom navbar on large screens */
+@media (min-width: 768px) {
+  .bottom-navbar {
+    display: none;
+  }
+}
+
+/* Optional: Ensure the traditional navbar is not displayed on small screens */
+@media (max-width: 767px) {
+  .top-navbar {
+    display: none;
+  }
+}
