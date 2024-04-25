@@ -5,6 +5,7 @@ import Ingredients from "../Ingredients/Ingredients";
 import Moods from "../Moods/Moods";
 import Symptoms from "../Symptoms/Symptoms";
 
+// Possible to show in form what's already selected by user if input for this date already existing?
 const InputForm = () => {
   // for calendar
   const location = useLocation();
