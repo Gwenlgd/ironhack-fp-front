@@ -139,11 +139,11 @@ const Ingredients = () => {
         {/* SELECTED INGREDIENTS CARDS */}
         <h3 className="mt-40 font-bold text-lg mb-4">Selected Ingredients:</h3>
         <div className="flex justify-center w-full">
-          <div className="flex items-start justify-center overflow-y-auto w-full h-48 p-3 text-start text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer overflow-hidden dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 peer-checked:bg-blue-50 hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:peer-checked:text-blue-200 peer-checked:text-blue-600">
+          <div className="flex items-start overflow-y-auto w-full h-48 p-3 text-start text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer overflow-hidden dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 peer-checked:bg-blue-50 hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:peer-checked:text-blue-200 peer-checked:text-blue-600">
             <ul className="list-none p-0 flex flex-wrap gap-1">
               {selectedIngredients.map((ingredient, index) => (
                 <li key={ingredient._id || index} className="mb-2">
-                  <div className="inline-flex items-center bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 m2 rounded-full dark:bg-indigo-900 dark:text-indigo-300">
+                  <div className="inline-flex items-center bg-indigo-100 text-indigo-800 text-s font-medium px-2.5 py-0.5 m2 rounded-full dark:bg-indigo-900 dark:text-indigo-300">
                     {ingredient.name}
                     <button
                       type="button"
