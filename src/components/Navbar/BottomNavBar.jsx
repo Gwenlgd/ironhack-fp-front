@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 // Context
 import useAuth from "../../context/useAuth";
@@ -28,6 +28,10 @@ function BottomNavbar() {
     }
   };
 
+  const handleDatePicked = () => {
+    setShowCalendar(false); // Hide the calendar
+  };
+
   const goToIngredients = () => {
     navigate("/ingredients"); // Ensure this matches your route setup
   };
@@ -37,7 +41,13 @@ function BottomNavbar() {
 
   return (
     <nav className="bottom-navbar">
-      <div className="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 dark:bg-gray-700 dark:border-gray-600">
+      <div className="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-2 left-1/2 dark:bg-gray-700 dark:border-gray-600">
+        {/* {location.pathname === "/add-input" && (
+          <CategorySwitcher
+            currentCategory={currentCategory}
+            setCurrentCategory={setCurrentCategory}
+          />
+        )} */}
         {/* HOME BUTTON */}
 
         <div className="grid h-full max-w-lg grid-cols-5 mx-auto">
@@ -120,7 +130,7 @@ function BottomNavbar() {
               ref={calendarRef}
               className="absolute bottom-16 left-1/2 transform -translate-x-1/2 z-50 bg-white rounded-lg shadow-lg p-4"
             >
-              <CalendarComponent />
+              <CalendarComponent onDatePicked={handleDatePicked} />
             </div>
           )}
           {/* <li>

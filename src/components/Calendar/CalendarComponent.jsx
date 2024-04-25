@@ -3,7 +3,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
 
-const CalendarComponent = () => {
+const CalendarComponent = ({ onDatePicked }) => {
   const [date, setDate] = useState(new Date());
   const navigate = useNavigate();
 
@@ -12,7 +12,7 @@ const CalendarComponent = () => {
     const localeDate = new Date(newDate);
     // console.log(newDate);
     localeDate.setDate(localeDate.getDate() + 1);
-    console.log(localeDate.toISOString().split("T")[0]);
+    onDatePicked();
     navigate(`/add-input?date=${localeDate.toISOString().split("T")[0]}`);
   };
 

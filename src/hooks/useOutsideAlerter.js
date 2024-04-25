@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 function useOutsideAlerter(ref, onClose) {
+
   useEffect(() => {
     function handleInteractionOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
