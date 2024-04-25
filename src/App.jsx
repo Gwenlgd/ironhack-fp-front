@@ -25,7 +25,7 @@ import HomePage from "./pages/HomePage";
 import OneIngredientPage from "./pages/OneIngredientPage";
 import CalendarComponent from "./components/Calendar/CalendarComponent";
 import BottomNavbar from "./components/Navbar/BottomNavBar";
-import ProfilePage from "./pages/profile/ProfilePage";
+import ProfilePage from "./pages/Profile/ProfilePage";
 import Ingredients from "./pages/Ingredients/Ingredients";
 import Moods from "./pages/Moods/Moods";
 import Symptoms from "./pages/Symptoms/Symptoms";
@@ -41,6 +41,7 @@ function App() {
           <LayoutContainer>
             <Routes>
               <Route path="/" element={<HomePage />}></Route>
+              <Route path="/profil" element={<ProfilePage />} />
               <Route path="/calendar" element={<CalendarComponent />} />
               <Route path="/ingredients" element={<Ingredients />} />
               <Route path="/moods" element={<Moods />} />
@@ -51,7 +52,6 @@ function App() {
                 <Route path="/login" element={<LoginPage />} />
               </Route>
               <Route element={<ProtectedRoute />}>
-                <Route path="/profil" element={<ProfilePage />} />
                 <Route path="/inputs" element={<InputsPage />} />
                 <Route path="/add-input" element={<InputForm />} />
                 <Route path="/inputs/:inputId" element={<OneInputPage />} />
