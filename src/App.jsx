@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 // import "./App.css";
 import ErrorBoundary from "./components/Error/ErrorBoundary";
-import AuthContextWrapper from "./context/AuthContextWrapper";
 
 /* Signup + Login pages */
 import SignupPage from "./pages/SignupPage";
