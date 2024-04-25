@@ -29,6 +29,7 @@ import ProfilePage from "./pages/profile/ProfilePage";
 import Ingredients from "./pages/Ingredients/Ingredients";
 import Moods from "./pages/Moods/Moods";
 import Symptoms from "./pages/Symptoms/Symptoms";
+import LayoutContainer from "./components/Layout/LayoutContainer";
 
 function App() {
   return (
@@ -37,32 +38,34 @@ function App() {
         <InputProvider>
           <Navbar />
           <BottomNavbar />
-          <Routes>
-            <Route path="/" element={<HomePage />}></Route>
-            <Route path="/calendar" element={<CalendarComponent />} />
-            <Route path="/ingredients" element={<Ingredients />} />
-            <Route path="/moods" element={<Moods />} />
-            <Route path="/symptoms" element={<Symptoms />} />
+          <LayoutContainer>
+            <Routes>
+              <Route path="/" element={<HomePage />}></Route>
+              <Route path="/calendar" element={<CalendarComponent />} />
+              <Route path="/ingredients" element={<Ingredients />} />
+              <Route path="/moods" element={<Moods />} />
+              <Route path="/symptoms" element={<Symptoms />} />
 
-            <Route element={<IsLoggedOut />}>
-              <Route path="/signup" element={<SignupPage />} />
-              <Route path="/login" element={<LoginPage />} />
-            </Route>
-            <Route element={<ProtectedRoute />}>
-              <Route path="/profil" element={<ProfilePage />} />
-              <Route path="/inputs" element={<InputsPage />} />
-              <Route path="/add-input" element={<InputForm />} />
-              <Route path="/inputs/:inputId" element={<OneInputPage />} />
+              <Route element={<IsLoggedOut />}>
+                <Route path="/signup" element={<SignupPage />} />
+                <Route path="/login" element={<LoginPage />} />
+              </Route>
+              <Route element={<ProtectedRoute />}>
+                <Route path="/profil" element={<ProfilePage />} />
+                <Route path="/inputs" element={<InputsPage />} />
+                <Route path="/add-input" element={<InputForm />} />
+                <Route path="/inputs/:inputId" element={<OneInputPage />} />
+                <Route
+                  path="/inputs/update/:inputId"
+                  element={<UpdateOneInput />}
+                />
+              </Route>
               <Route
-                path="/inputs/update/:inputId"
-                element={<UpdateOneInput />}
+                path="/ingredients/:ingredientId"
+                element={<OneIngredientPage />}
               />
-            </Route>
-            <Route
-              path="/ingredients/:ingredientId"
-              element={<OneIngredientPage />}
-            />
-          </Routes>
+            </Routes>
+          </LayoutContainer>
         </InputProvider>
       </ErrorBoundary>
     </>
