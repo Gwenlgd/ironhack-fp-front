@@ -56,7 +56,7 @@ function OneInputPage() {
 
       <div className=" w-full flex flex-col items-center justify-center">
         <h3>{new Date(oneInput.date).toLocaleDateString()}</h3>
-        <h3 className="mt-2 text-2xl font-bold text-dark-blue mb-2">
+        <h3 className="mt-2 mb-6 text-2xl font-bold text-dark-blue mb-2">
           Ingredients added
         </h3>
         <div className="w-full flex items-start overflow-y-auto w-full h-40 p-3 text-start text-floral-white bg-cambridge-blue opacity-30 rounded-lg cursor-pointer overflow-hidden dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 peer-checked:bg-blue-50 hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:peer-checked:text-blue-200 peer-checked:text-blue-600">
@@ -85,7 +85,7 @@ function OneInputPage() {
       </div>
 
       <div className=" w-full flex flex-col items-center justify-center">
-        <h3 className="mt-10 text-2xl font-bold text-dark-blue mb-2">
+        <h3 className="mt-10 mb-6 text-2xl font-bold text-dark-blue mb-2">
           Moods Added:
         </h3>
         <div className="w-full flex items-start overflow-y-auto w-full h-40 p-3 text-start text-floral-white bg-cambridge-blue opacity-30 rounded-lg cursor-pointer overflow-hidden dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 peer-checked:bg-blue-50 hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:peer-checked:text-blue-200 peer-checked:text-blue-600">
@@ -102,7 +102,7 @@ function OneInputPage() {
       </div>
 
       <div className=" w-full flex flex-col items-center justify-center">
-        <h3 className="mt-10 text-2xl font-bold text-dark-blue mb-2">
+        <h3 className="mt-10 mb-6 text-2xl font-bold text-dark-blue mb-2">
           Symtpoms Added:
         </h3>
         <div className="w-full flex items-start overflow-y-auto w-full h-40 p-3 text-start text-floral-white bg-cambridge-blue opacity-30 rounded-lg cursor-pointer overflow-hidden dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 peer-checked:bg-blue-50 hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:peer-checked:text-blue-200 peer-checked:text-blue-600">
