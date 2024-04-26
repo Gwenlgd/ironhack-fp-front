@@ -41,7 +41,7 @@ function BottomNavbar() {
 
   return (
     <nav className="bottom-navbar">
-      <div className="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white border border-100 rounded bottom-0 left-1/2 dark:bg-gray-700 dark:border-gray-600">
+      <div className="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-whitee border border-100 rounded bottom-0 left-1/2 dark:bg-gray-700 dark:border-gray-600">
         {/* {location.pathname === "/add-input" && (
           <CategorySwitcher
             currentCategory={currentCategory}
