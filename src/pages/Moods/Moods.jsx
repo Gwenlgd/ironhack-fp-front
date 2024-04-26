@@ -17,9 +17,6 @@ const Moods = () => {
 
   return (
     <fieldset>
-      <legend className="mb-5 text-lg font-medium text-gray-900 dark:text-white">
-        Moods
-      </legend>
       <ul className="grid grid-cols-2 md:grid-cols-3 gap-6 w-full">
         {moods.map((mood) => (
           <li key={mood._id}>

@@ -23,9 +23,6 @@ const Symptoms = () => {
 
   return (
     <fieldset>
-      <legend className="mb-5 text-lg font-medium text-gray-900 dark:text-white">
-        Symptoms
-      </legend>
       <ul className="grid grid-cols-2 md:grid-cols-3 gap-6 w-full">
         {symptoms.map((symptom) => (
           <li key={symptom._id}>

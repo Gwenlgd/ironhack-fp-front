@@ -17,7 +17,8 @@ body {
 
 /* CSS for hiding the bottom navbar on large screens */
 @media (min-width: 768px) {
-  .bottom-navbar {
+  .bottom-navbar,
+  .top-navbar-mobile {
     display: none;
   }
 }
