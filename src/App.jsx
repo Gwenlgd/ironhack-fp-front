@@ -29,6 +29,9 @@ import Ingredients from "./pages/Ingredients/Ingredients";
 import Moods from "./pages/Moods/Moods";
 import Symptoms from "./pages/Symptoms/Symptoms";
 import LayoutContainer from "./components/Layout/LayoutContainer";
+import TopNavbar from "./components/Navbar/TopNavBar";
+import IngredientsPage from "./pages/Ingredients/IngredientsPage";
+import IngredientDetail from "./pages/Ingredients/IngredientDetail";
 
 function App() {
   return (
@@ -36,6 +39,7 @@ function App() {
       <ErrorBoundary>
         <InputProvider>
           <Navbar />
+          <TopNavbar />
           <BottomNavbar />
           <LayoutContainer>
             <Routes>
@@ -43,6 +47,8 @@ function App() {
               <Route path="/profil" element={<ProfilePage />} />
               <Route path="/calendar" element={<CalendarComponent />} />
               <Route path="/ingredients" element={<Ingredients />} />
+              <Route path="/ingredientspage" element={<IngredientsPage />} />
+              <Route path="/ingredientdetail" element={<IngredientDetail />} />
               <Route path="/moods" element={<Moods />} />
               <Route path="/symptoms" element={<Symptoms />} />
 
@@ -50,6 +56,7 @@ function App() {
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/login" element={<LoginPage />} />
               </Route>
+
               <Route element={<ProtectedRoute />}>
                 <Route path="/inputs" element={<InputsPage />} />
                 <Route path="/add-input" element={<InputForm />} />
@@ -59,6 +66,7 @@ function App() {
                   element={<UpdateOneInput />}
                 />
               </Route>
+
               <Route
                 path="/ingredients/:ingredientId"
                 element={<OneIngredientPage />}
