@@ -59,28 +59,44 @@ function OneInputPage() {
         <h3 className="mt-2 mb-6 text-2xl font-bold text-dark-blue mb-2">
           Ingredients added
         </h3>
-        <div className="w-full flex items-start overflow-y-auto w-full h-40 p-3 text-start text-floral-white bg-cambridge-blue opacity-30 rounded-lg cursor-pointer overflow-hidden dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 peer-checked:bg-blue-50 hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:peer-checked:text-blue-200 peer-checked:text-blue-600">
-          {oneInput.ingredient && oneInput.ingredient.length > 0 ? (
-            <ul>
-              {oneInput.ingredient.map((item, index) => (
-                <li key={index}>
-                  <button
-                    onClick={() =>
-                      removeIngredientFromInput(oneInput._id, item._id)
-                    }
-                  >
-                    Remove not working?
-                  </button>
-
-                  <Link to={`/ingredients/${item._id}`}>
-                    <h2>Name: {item.name}</h2>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No ingredients listed.</p>
-          )}
+        <div className="flex justify-center w-full">
+          <div className="w-full flex items-start overflow-y-auto w-full h-40 p-3 text-start text-floral-white bg-cambridge-blue opacity-30 rounded-lg cursor-pointer overflow-hidden dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 peer-checked:bg-blue-50 hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:peer-checked:text-blue-200 peer-checked:text-blue-600">
+            {oneInput.ingredient && oneInput.ingredient.length > 0 ? (
+              <ul>
+                {oneInput.ingredient.map((item, index) => (
+                  <li key={index}>
+                    <div className="inline-flex items-center text-dark-blue font-bold font-medium px-2.5 py-0.5 m2 rounded-full dark:bg-indigo-900 dark:text-indigo-300">
+                      <Link to={`/ingredients/${item._id}`}>
+                        <h2 className="text-floral-white font-bold text-lg">
+                          {item.name}
+                        </h2>
+                      </Link>
+                      <button
+                        className="ml-2"
+                        onClick={() =>
+                          removeIngredientFromInput(oneInput._id, item._id)
+                        }
+                      >
+                        <svg
+                          className="w-3 h-3 fill-current text-floral-white dark:text-indigo-300"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No ingredients listed.</p>
+            )}
+          </div>
         </div>
       </div>
 
@@ -92,7 +108,12 @@ function OneInputPage() {
           {oneInput.mood && oneInput.mood.length > 0 ? (
             <ul>
               {oneInput.mood.map((mood) => (
-                <li key={mood._id}>{mood.name} </li>
+                <li
+                  key={mood._id}
+                  className="text-floral-white font-bold text-lg"
+                >
+                  {mood.name}{" "}
+                </li>
               ))}
             </ul>
           ) : (
@@ -109,7 +130,12 @@ function OneInputPage() {
           {oneInput.symptom.length > 0 ? (
             <ul>
               {oneInput.symptom.map((symptom) => (
-                <li key={symptom._id}>{symptom.name} </li>
+                <li
+                  key={symptom._id}
+                  className="text-floral-white font-bold text-lg"
+                >
+                  {symptom.name}{" "}
+                </li>
               ))}
             </ul>
           ) : (

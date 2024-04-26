@@ -42,17 +42,26 @@ function HomePage() {
           </>
         ) : (
           <>
-            <h3>Home Please sign up or log in</h3>
-            <p>
-              Need to change and be able to see something here even if not
-              logged in
-            </p>
-            <li>
-              <Link to={"/signup"}>Signup</Link>
-            </li>
-            <li>
-              <Link to={"/login"}>Login</Link>
-            </li>
+            <div
+              className=" flex items-center mt-8 justify-center bg-white rounded-lg shadow-lg"
+              style={{ height: "60vh", width: "100%" }}
+            >
+              <div className="w-full flex flex-col items-center p-8">
+                <h3>Not logged in yet?</h3>
+                <Link
+                  to="/signup"
+                  className="w-full mt-6 text-center text-floral-white bg-cambridge-blue opacity-50 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                >
+                  Signup
+                </Link>
+                <Link
+                  to="/login"
+                  className="w-full mt-6 text-center text-floral-white bg-cambridge-blue opacity-50 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                >
+                  Login
+                </Link>
+              </div>
+            </div>
           </>
         )}
       </div>

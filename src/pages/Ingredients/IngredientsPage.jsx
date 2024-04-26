@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate, Link } from "react-router-dom";
+
 import { useInput } from "../../context/InputContext";
 import useOutsideAlerter from "../../hooks/useOutsideAlerter";
 
@@ -9,6 +11,9 @@ const IngredientsPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const dropdownRef = useRef(null);
+
+  const navigate = useNavigate();
+
   const {
     ingredientsList,
     selectedIngredients,
@@ -56,12 +61,13 @@ const IngredientsPage = () => {
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
-    setSearchTerm(""); // Clear search when selecting a category
+    setSearchTerm("");
   };
 
   const handleIngredientSelect = (ingredient, e) => {
     e.stopPropagation();
     addIngredient(ingredient);
+    navigate(`/ingredients/${ingredient.id}`);
   };
 
   const isIngredientSelected = (ingredient) =>
@@ -153,7 +159,9 @@ const IngredientsPage = () => {
                       : ""
                   }`}
                 >
-                  {ingredient.name}
+                  <Link to={`/ingredients/${ingredient._id}`}>
+                    <h2>{ingredient.name}</h2>
+                  </Link>
                 </li>
               ))}
             </ul>

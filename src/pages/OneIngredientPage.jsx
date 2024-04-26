@@ -30,25 +30,27 @@ function OneIngredientPage() {
   if (!ingredient) return <p>No ingredient found.</p>;
 
   return (
-    <div>
-      <h2>{ingredient.name}</h2>
-      <p>
+    <div className="p-8 font-sans">
+      <h2 className="text-xl font-semibold text-gray-800">{ingredient.name}</h2>
+      <p className="mt-1">
         <strong>Category:</strong> {ingredient.category}
       </p>
       {ingredient.benefits && ingredient.benefits.length > 0 && (
-        <>
-          <h4>Benefits</h4>
+        <div className="mt-4">
+          <h4 className="text-lg font-medium text-gray-700">Benefits</h4>
           <ul>
             {ingredient.benefits.map((benefit, index) => (
-              <li key={index}>
-                Name: {benefit.title}
+              <li key={index} className="mt-2">
+                <strong>Name:</strong> {benefit.title}
                 {benefit.description && (
-                  <p>Description: {benefit.description}</p>
+                  <p className="text-sm text-gray-600">
+                    Description: {benefit.description}
+                  </p>
                 )}
               </li>
             ))}
           </ul>
-        </>
+        </div>
       )}
     </div>
   );
