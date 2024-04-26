@@ -9,7 +9,7 @@ function TopNavbar() {
 
   return (
     <nav className="top-navbar-mobile">
-      <div className="fixed z-50 top-0 w-full bg-white h-12 flex items-center px-4 shadow-md">
+      <div className="fixed z-50 top-0 w-full bg-white h-12 flex items-center px-4 shadow-md opacity-60 rounded">
         <button
           onClick={goBack}
           className="text-blue-600 hover:text-blue-800 focus:outline-none"
