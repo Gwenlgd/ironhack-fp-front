@@ -40,21 +40,6 @@ const InputProvider = ({ children }) => {
       setLoading(false);
     }
   }, []);
-  // const fetchInput = useCallback(async (inputId) => {
-  //   // ! useCallback : to avoid infinite loop when fetchInput
-  //   setLoading(true);
-  //   setError(null);
-  //   try {
-  //     const response = await heikoApi.get(`/inputs/${inputId}`);
-  //     setInputsData(response.data);
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     console.error("Failed to fetch input", error);
-  //     setError("Failed to fetch input");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }, []);
 
   // get all inputs :
 

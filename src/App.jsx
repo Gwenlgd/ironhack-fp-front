@@ -38,7 +38,6 @@ function App() {
     <>
       <ErrorBoundary>
         <InputProvider>
-          <Navbar />
           <TopNavbar />
           <BottomNavbar />
           <LayoutContainer>
