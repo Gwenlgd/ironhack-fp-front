@@ -19,7 +19,6 @@ import UpdateOneInput from "./pages/Inputs/UpdateOneInput";
 import InputForm from "./pages/Inputs/InputForm";
 
 /*Components*/
-import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage";
 import OneIngredientPage from "./pages/OneIngredientPage";
 import CalendarComponent from "./components/Calendar/CalendarComponent";

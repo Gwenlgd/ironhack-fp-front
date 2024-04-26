@@ -67,7 +67,6 @@ const IngredientsPage = () => {
   const handleIngredientSelect = (ingredient, e) => {
     e.stopPropagation();
     addIngredient(ingredient);
-    navigate(`/ingredients/${ingredient.id}`);
   };
 
   const isIngredientSelected = (ingredient) =>
