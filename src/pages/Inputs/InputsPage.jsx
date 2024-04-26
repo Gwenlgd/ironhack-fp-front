@@ -30,7 +30,7 @@ function InputsPage() {
   if (!inputsData) return <h3>No inputs to see, please add some</h3>;
 
   const handleDelete = async (inputId) => {
-    if (window.confirm("Are you sure you want to delete this input?")) {
+    {
       try {
         await deleteInput(inputId);
         setDeletedId(inputId);
@@ -46,14 +46,48 @@ function InputsPage() {
   };
 
   return (
-    <div>
-      {showConfirmation && <h4>Input deleted successfully!</h4>}
+    <div className="max-w-lg mx-auto flex flex-col items-center justify-center">
+      {showConfirmation && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-80 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center">
+            <h4 className="text-periwinkle text-lg font-bold mb-4">
+              Input deleted successfully!
+            </h4>
+            <button
+              onClick={() => setShowConfirmation(false)}
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition-colors"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+      <h2 className="mt-2 text-2xl font-bold text-periwinkle mb-10">
+        YOUR INPUTS
+      </h2>
       {inputsData.map((input) => (
         <div key={input._id}>
-          <h2>
-            <Link to={`/inputs/${input._id}`}>{input.date}</Link>
-          </h2>
-          <button onClick={() => handleDelete(input._id)}>Remove</button>
+          <div className="inline-flex items-center bg-cambridge-blue opacity-55 text-floral-white font-bold text-s font-medium p-4 m2 rounded dark:bg-indigo-900 dark:text-indigo-300 mt-6 ">
+            <h2 className="mx-6">
+              <Link to={`/inputs/${input._id}`}>
+                {new Date(input.date).toLocaleDateString()}
+              </Link>{" "}
+            </h2>
+            <button onClick={() => handleDelete(input._id)}>
+              {" "}
+              <svg
+                className="w-3 h-3 fill-current text-indigo-800 dark:text-indigo-300"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       ))}
     </div>
