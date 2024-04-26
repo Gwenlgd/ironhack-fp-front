@@ -66,7 +66,7 @@ function ProfilePage() {
         <>
           <div className="">
             <div
-              className=" flex items-center mt-40 justify-center bg-white rounded-lg shadow-lg"
+              className=" flex items-center mt-8 justify-center bg-white rounded-lg shadow-lg"
               style={{ height: "60vh", width: "100%" }}
             >
               <div className="w-full flex flex-col items-center p-8">

@@ -34,8 +34,8 @@ function LoginPage() {
 
   const { name, email, password } = formState;
   return (
-    <div className="max-w-lg mx-auto p-8 bg-white shadow-md rounded-lg">
-      <h2 className="text-2xl font-bold text-center mb-6">Login Form</h2>
+    <div className="max-w-lg mx-auto p-8 bg-white shadow-md rounded-lg items-center ">
+      <h2 className="text-2xl font-bold text-center">Login Form</h2>
 
       {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 

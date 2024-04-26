@@ -138,7 +138,7 @@ function BottomNavbar() {
           {showCalendar && (
             <div
               ref={calendarRef}
-              className="absolute bottom-16 left-1/2 transform -translate-x-1/2 z-50 bg-white rounded-lg shadow-lg p-4"
+              className="absolute bottom-16 left-1/2 transform -translate-x-1/2 z-50 bg-white opacity-75 rounded-lg shadow-lg p-4"
             >
               <CalendarComponent onDatePicked={handleDatePicked} />
             </div>

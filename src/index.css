@@ -11,8 +11,13 @@
 body {
   font-family: "Inter", sans-serif;
   line-height: 1.5;
-  min-height: 100vh;
+  min-height: 99vh;
   background-color: #f8f8f9;
+  background-image: url("./assets/background.svg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* CSS for hiding the bottom navbar on large screens */

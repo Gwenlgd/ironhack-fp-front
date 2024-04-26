@@ -21,8 +21,8 @@ function HomePage() {
       {isLoggedIn ? (
         <>
           {/* <CalendarComponent onChange={handleDateClick} value={value} /> */}
-          <h1>HomePage</h1>
-          {<h3>Hello {user.name}</h3>}
+          {<h1>Hello</h1>}
+          {<h2>{user.name}</h2>}
           <p>
             <Link to="/inputs">All your inputs</Link>
           </p>
