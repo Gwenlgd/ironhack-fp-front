@@ -1,5 +1,25 @@
 .react-calendar {
   border: none;
-  background-color: transparent;
+  /* background-color: white; */
+  font-weight: bolder;
+  font-size: 1.2rem;
+}
+
+.react-calendar__navigation__label {
+  color: #74a57f;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.react-calendar__navigation__label__labelText
+  react-calendar__navigation__label__labelText--from {
+  font-weight: bolder;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #121722;
   font-weight: bolder;
 }

@@ -70,7 +70,7 @@ const IngredientsPage = () => {
   return (
     <>
       <div className="mt-20 mb-2 w-full">
-        <h3 className="mb-6 text-lg font-bold">
+        <h3 className="mb-6 text-dark-blue upper text-lg font-bold">
           What ingredient are you looking for ?
         </h3>
         {/* <div className="relative">
@@ -125,8 +125,8 @@ const IngredientsPage = () => {
               key={index}
               className={` min-w-min px-4 py-1 rounded-lg text-sm whitespace-nowrap  ${
                 selectedCategory === category
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-100 text-gray-500 hover:text-gray-900 hover:bg-gray-200"
+                  ? "bg-cambridge-blue opacity-60 text-floral-white"
+                  : "bg-periwinkle opacity-70 text-dark-blue hover:text-gray-900 hover:bg-gray-200"
               }`}
               style={{ width: "200px" }}
               onClick={() => handleCategorySelect(category)}
@@ -139,19 +139,18 @@ const IngredientsPage = () => {
         {/* Ingredients List */}
         {selectedCategory && !searchTerm && (
           <div className="mt-10">
-            <h3 className="mb-6 text-lg font-bold">
-              Ingredients in {selectedCategory}:
-            </h3>
             <ul
-              className="overflow-y-auto bg-white rounded-lg"
-              style={{ maxHeight: "55vh" }}
+              className="overflow-y-auto text-floral-white bg-cambridge-blue opacity-50 rounded-lg"
+              style={{ maxHeight: "60vh" }}
             >
               {categoryIngredients.map((ingredient) => (
                 <li
                   key={ingredient.id}
                   onClick={(e) => handleIngredientSelect(ingredient, e)}
                   className={`px-2 py-2 hover:bg-gray-100 cursor-pointer ${
-                    isIngredientSelected(ingredient) ? "bg-blue-100" : ""
+                    isIngredientSelected(ingredient)
+                      ? "bg-cambridge-blue opacity-90"
+                      : ""
                   }`}
                 >
                   {ingredient.name}
