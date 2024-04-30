@@ -1,13 +1,11 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import LoadingSplashScreen from "../components/SplashScreens/LoadingSplashScreen";
 
 const LoadingContext = createContext();
 
-export function useLoading() {
-  return useContext(LoadingContext);
-}
+export const useLoading = () => useContext(LoadingContext);
 
-export function LoadingProvider({ children }) {
+export const LoadingProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const showLoading = () => setIsLoading(true);
@@ -19,4 +17,4 @@ export function LoadingProvider({ children }) {
       {isLoading && <LoadingSplashScreen />}
     </LoadingContext.Provider>
   );
-}
+};
