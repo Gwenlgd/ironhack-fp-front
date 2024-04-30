@@ -5,7 +5,6 @@ import useAuth from "./../context/useAuth";
 
 function LoginPage() {
   const [formState, setFormState] = useState({
-    name: "",
     email: "",
     password: "",
   });
@@ -32,7 +31,7 @@ function LoginPage() {
     }
   }
 
-  const { name, email, password } = formState;
+  const { email, password } = formState;
   return (
     <div className="max-w-lg mx-auto p-8 bg-white shadow-md rounded-lg items-center ">
       <h2 className="text-2xl font-bold text-center">Login Form</h2>
@@ -40,16 +39,6 @@ function LoginPage() {
       {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
       <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="text"
-            id="name"
-            placeholder="Name"
-            value={name}
-            onChange={handleChange}
-            className="mt-4 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-          />
-        </div>
         <div>
           <input
             type="email"

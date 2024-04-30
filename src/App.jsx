@@ -1,4 +1,6 @@
 import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+
 // import "./App.css";
 import ErrorBoundary from "./components/Error/ErrorBoundary";
 
@@ -31,8 +33,20 @@ import LayoutContainer from "./components/Layout/LayoutContainer";
 import TopNavbar from "./components/Navbar/TopNavBar";
 import IngredientsPage from "./pages/Ingredients/IngredientsPage";
 import IngredientDetail from "./pages/Ingredients/IngredientDetail";
+import InitialSplashScreen from "./components/SplashScreens/InitialSplashScreen";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <InitialSplashScreen />;
+  }
+
   return (
     <>
       <ErrorBoundary>
