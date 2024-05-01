@@ -61,7 +61,7 @@ h1 {
 
 @media (max-width: 640px) {
   .button-navbott {
-    height: 20rem;
-    width: 20rem;
+    height: 5rem;
+    /* width: 20rem; */
   }
 }
