@@ -41,7 +41,7 @@ function BottomNavbar() {
 
   return (
     <nav className="bottom-navbar">
-      <div className="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-whitee border border-100 rounded bottom-0 left-1/2 dark:bg-gray-700 dark:border-gray-600">
+      <div className="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-whitee shadow-navbar rounded bottom-0 left-1/2 dark:bg-gray-700 dark:border-gray-600">
         {/* {location.pathname === "/add-input" && (
           <CategorySwitcher
             currentCategory={currentCategory}
@@ -66,7 +66,7 @@ function BottomNavbar() {
             >
               <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
             </svg>
-            <span className="text-s text-center text-periwinkle dark:text-gray-300">
+            <span className="text-s text-center text-periwinkle font-semibold dark:text-gray-300">
               Home
             </span>
           </button>
@@ -95,7 +95,7 @@ function BottomNavbar() {
               />
             </svg>
 
-            <span className="text-s text-center text-periwinkle dark:text-gray-300">
+            <span className="text-s text-center text-periwinkle font-semibold dark:text-gray-300">
               Food
             </span>
           </button>
@@ -158,18 +158,12 @@ function BottomNavbar() {
               className="w-5 h-5 mb-1 text-periwinkle dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
-              fill="none"
+              fill="currentColor"
               viewBox="0 0 20 20"
             >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 12.25V1m0 11.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M4 19v-2.25m6-13.5V1m0 2.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M10 19V7.75m6 4.5V1m0 11.25a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5ZM16 19v-2"
-              />
+              <path d="M1 5h1.424a3.228 3.228 0 0 0 6.152 0H19a1 1 0 1 0 0-2H8.576a3.228 3.228 0 0 0-6.152 0H1a1 1 0 1 0 0 2Zm18 4h-1.424a3.228 3.228 0 0 0-6.152 0H1a1 1 0 1 0 0 2h10.424a3.228 3.228 0 0 0 6.152 0H19a1 1 0 0 0 0-2Zm0 6H8.576a3.228 3.228 0 0 0-6.152 0H1a1 1 0 0 0 0 2h1.424a3.228 3.228 0 0 0 6.152 0H19a1 1 0 0 0 0-2Z" />
             </svg>
-            <span className="text-s text-center text-periwinkle dark:text-gray-300">
+            <span className="text-s text-center text-periwinkle font-semibold dark:text-gray-300">
               Settings
             </span>
           </button>
@@ -199,7 +193,7 @@ function BottomNavbar() {
             >
               <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
             </svg>
-            <span className="text-s text-center text-periwinkle dark:text-gray-300">
+            <span className="text-s text-center text-periwinkle font-semibold dark:text-gray-300">
               Profile
             </span>
           </button>

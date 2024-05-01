@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useIngredients } from "../../context/IngredientContext";
+
 import { useInput } from "../../context/InputContext";
 import useOutsideAlerter from "../../hooks/useOutsideAlerter";
 
@@ -9,12 +9,10 @@ const IngredientsPage = () => {
   const [uniqueCategories, setUniqueCategories] = useState([]);
   const [categoryIngredients, setCategoryIngredients] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResulsts, setSearchResults] = useState([]);
   const dropdownRef = useRef(null);
 
-  const navigate = useNavigate();
-
-  const { fetchSearchResults, ingredients, error } = useIngredients();
+  // const navigate = useNavigate();
 
   const {
     ingredientsList,
@@ -45,39 +43,21 @@ const IngredientsPage = () => {
     }
   }, [selectedCategory, ingredientsList]);
 
-  // search by name, category or benefits
   useEffect(() => {
     if (searchTerm) {
       const results = ingredientsList.filter((ingredient) => {
-        const searchLower = searchTerm.toLowerCase();
-
-        const inName = ingredient.name.toLowerCase().includes(searchLower);
-        const inCategory = ingredient.category
-          .toLowerCase()
-          .includes(searchLower);
-
-        const inBenefits = ingredient.benefits.some(
+        // Check each benefit and ensure it is a string before calling toLowerCase()
+        return Object.values(ingredient.benefits).some(
           (benefit) =>
-            (benefit.title &&
-              benefit.title.toLowerCase().includes(searchLower)) ||
-            (benefit.description &&
-              benefit.description.toLowerCase().includes(searchLower))
+            typeof benefit === "string" &&
+            benefit.toLowerCase().includes(searchTerm.toLowerCase())
         );
-
-        return inName || inCategory || inBenefits;
       });
       setSearchResults(results);
     } else {
       setSearchResults([]);
     }
   }, [searchTerm, ingredientsList]);
-
-  const handleSearch = (searchTerm) => {
-    fetchSearchResults(searchTerm).then((results) => {
-      setSearchResults(results);
-      navigate("/results", { state: { searchResults: results } });
-    });
-  };
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
@@ -94,11 +74,11 @@ const IngredientsPage = () => {
 
   return (
     <>
-      <div className="mt-20 mb-2 w-full px-4">
+      <div className="mt-20 mb-2 w-full">
         <h3 className="mb-6 text-dark-blue upper text-lg font-bold">
           What ingredient are you looking for ?
         </h3>
-        <div className="relative flex items-center mb-6">
+        {/* <div className="relative">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <svg
               className="w-4 h-4 text-gray-500 dark:text-gray-400"
@@ -120,20 +100,12 @@ const IngredientsPage = () => {
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search ingredients..."
-            className="block w-full p-4 ps-10 text-green bg-whitee border-2 border-periwinkle text-gray-900 text-sm rounded-l-lg focus:outline-none block w-full"
+            placeholder="Search by benefits..."
+            className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
-          <button
-            onClick={() => handleSearch(searchTerm)}
-            className="p-4 bg-periwinkle text-white transition duration-150 ease-in-out rounded-r-lg"
-          >
-            Search
-          </button>
-          {error && <p>{error}</p>}
-
           {searchTerm && (
             <ul className="mt-2">
-              {ingredients.map((ingredient) => (
+              {searchResults.map((ingredient) => (
                 <li
                   key={ingredient.id}
                   onClick={(e) => handleIngredientSelect(ingredient, e)}
@@ -146,25 +118,22 @@ const IngredientsPage = () => {
               ))}
             </ul>
           )}
-        </div>
+        </div> */}
 
         {/* Category Tabs */}
-        <h3 className="mb-6 text-dark-blue upper text-lg font-bold">
-          By Category :
-        </h3>
         <div
-          className="grid grid-cols-3 md:grid-cols-3 gap-x-6 gap-y-6 w-full lg:w-1/2 mx-auto"
+          className=" flex overflow-x-auto no-scrollbar p-1 mx-auto my-10 rounded-lg gap-4"
           style={{ height: "70px" }}
         >
           {uniqueCategories.map((category, index) => (
             <button
               key={index}
-              className={`inline-flex flex-col items-center justify-center w-1/4 h-20 text-center text-floral-white bg-periwinkle opacity-60 rounded-lg cursor-pointer shadow-not-selected  ${
+              className={` min-w-min px-4 py-1 rounded-lg text-sm whitespace-nowrap  ${
                 selectedCategory === category
                   ? "bg-green opacity-60 text-floral-white"
                   : "bg-periwinkle opacity-70 text-dark-blue hover:text-gray-900 hover:bg-gray-200"
               }`}
-              style={{ width: "100px" }}
+              style={{ width: "200px" }}
               onClick={() => handleCategorySelect(category)}
             >
               {category}
@@ -173,7 +142,7 @@ const IngredientsPage = () => {
         </div>
 
         {/* Ingredients List */}
-        {/* {selectedCategory && !searchTerm && (
+        {selectedCategory && !searchTerm && (
           <div className="mt-10">
             <ul
               className="overflow-y-auto text-floral-white bg-green opacity-50 rounded-lg"
@@ -196,7 +165,7 @@ const IngredientsPage = () => {
               ))}
             </ul>
           </div>
-        )} */}
+        )}
       </div>
     </>
   );
