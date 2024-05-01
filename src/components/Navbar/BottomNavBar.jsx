@@ -115,7 +115,7 @@ function BottomNavbar() {
               onClick={handleNewEntryClick}
               data-tooltip-target="tooltip-new"
               type="button"
-              className="inline-flex items-center justify-center w-20 h-20 text-white bg-periwinkle shadow-lg rounded-full hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 -mt-5"
+              className="inline-flex items-center justify-center w-20 h-20 shadow-button-two text-white bg-periwinkle shadow-lg rounded-full hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 -mt-5"
             >
               <svg
                 className="w-6 h-6 text-floral-white"
