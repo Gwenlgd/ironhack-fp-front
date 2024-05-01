@@ -67,7 +67,7 @@ const InputForm = () => {
     <>
       <form onSubmit={handleSubmit}>
         {/* DATE */}
-        <div className="relative main-content mt-32 mb-10 max-w-sm">
+        <div className="relative main-content mt-36 mb-6 max-w-sm mx-auto">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"></div>
           <input
             type="date"
@@ -75,7 +75,7 @@ const InputForm = () => {
             value={date}
             onChange={(e) => setDate(e.target.value)}
             required
-            className="text-center font-bold text-cambridge-blue bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="text-center font-bold text-green bg-whitee border border-periwinkle text-gray-900 text-sm rounded-lg focus:ring-coral focus:border-coral block w-full ps-10 p-2.5"
           />
         </div>
 

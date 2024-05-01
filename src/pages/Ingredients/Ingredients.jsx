@@ -67,23 +67,23 @@ const Ingredients = () => {
         {/* SELECTED INGREDIENTS CARDS */}
         <h3 className=" font-bold text-lg mb-4">Selected Ingredients:</h3>
         <div className="flex justify-center w-full">
-          <div className="flex items-start overflow-y-auto w-full h-48 p-3 text-start text-gray-500 bg-cambridge-blue opacity-40 rounded-lg cursor-pointer overflow-hidden dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 peer-checked:bg-blue-50 hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:peer-checked:text-blue-200 peer-checked:text-blue-600">
+          <div className="flex items-start overflow-y-auto w-full h-48 p-3 text-start text-gray-500 bg-periwinkle opacity-70 rounded-lg cursor-pointer overflow-hidden dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 peer-checked:bg-blue-50 hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:peer-checked:text-blue-200 peer-checked:text-blue-600">
             <ul className="list-none p-0 flex flex-wrap gap-1">
               {selectedIngredients.map((ingredient, index) => (
                 <li key={ingredient._id || index} className="mb-2">
-                  <div className="inline-flex items-center bg-periwinkle text-dark-blue font-bold text-s font-medium px-2.5 py-0.5 m2 rounded-full dark:bg-indigo-900 dark:text-indigo-300">
+                  <div className="inline-flex items-center bg-dark-blue text-dark-blue font-bold text-s font-medium px-2.5 py-0.5 m2 rounded-full dark:bg-indigo-900 dark:text-indigo-300">
                     <h2 className="text-floral-white font-bold">
                       {ingredient.name}
                     </h2>
                     <button
                       type="button"
-                      className="ml-2"
+                      className="ml-2 "
                       onClick={() =>
                         handleRemoveItem(ingredient._id, "ingredient")
                       }
                     >
                       <svg
-                        className="w-3 h-3 fill-current text-indigo-800 dark:text-indigo-300"
+                        className="w-3 h-3 fill-current font-bold text-floral-white dark:text-indigo-300"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -166,14 +166,14 @@ const Ingredients = () => {
                 </svg>
               </button>
             </div> */}
-              <ul className="min-h-40 max-h-40 overflow-y-auto">
+              <ul className="min-h-40 max-h-40 overflow-y-auto bg-whitee">
                 {filteredIngredients.map((ingredient) => (
                   <li
                     key={ingredient._id}
                     onClick={(e) => handleIngredientSelect(ingredient, e)}
                     className={`px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer ${
                       isIngredientSelected(ingredient)
-                        ? "bg-cambridge-blue opacity-50  text-floral-white dark:bg-blue-800"
+                        ? "bg-green opacity-50  text-floral-white dark:bg-blue-800"
                         : ""
                     }`}
                   >

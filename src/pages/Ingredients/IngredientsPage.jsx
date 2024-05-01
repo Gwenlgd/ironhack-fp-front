@@ -9,10 +9,10 @@ const IngredientsPage = () => {
   const [uniqueCategories, setUniqueCategories] = useState([]);
   const [categoryIngredients, setCategoryIngredients] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [setSearchResults] = useState([]);
   const dropdownRef = useRef(null);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const {
     ingredientsList,
@@ -130,7 +130,7 @@ const IngredientsPage = () => {
               key={index}
               className={` min-w-min px-4 py-1 rounded-lg text-sm whitespace-nowrap  ${
                 selectedCategory === category
-                  ? "bg-cambridge-blue opacity-60 text-floral-white"
+                  ? "bg-green opacity-60 text-floral-white"
                   : "bg-periwinkle opacity-70 text-dark-blue hover:text-gray-900 hover:bg-gray-200"
               }`}
               style={{ width: "200px" }}
@@ -145,7 +145,7 @@ const IngredientsPage = () => {
         {selectedCategory && !searchTerm && (
           <div className="mt-10">
             <ul
-              className="overflow-y-auto text-floral-white bg-cambridge-blue opacity-50 rounded-lg"
+              className="overflow-y-auto text-floral-white bg-green opacity-50 rounded-lg"
               style={{ maxHeight: "60vh" }}
             >
               {categoryIngredients.map((ingredient) => (
@@ -154,7 +154,7 @@ const IngredientsPage = () => {
                   onClick={(e) => handleIngredientSelect(ingredient, e)}
                   className={`px-2 py-2 hover:bg-gray-100 cursor-pointer ${
                     isIngredientSelected(ingredient)
-                      ? "bg-cambridge-blue opacity-90"
+                      ? "bg-green opacity-90"
                       : ""
                   }`}
                 >
