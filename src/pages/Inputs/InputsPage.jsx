@@ -67,7 +67,7 @@ function InputsPage() {
       </h2>
       {inputsData.map((input) => (
         <div key={input._id}>
-          <div className="inline-flex items-center bg-cambridge-blue opacity-55 text-floral-white font-bold text-s font-medium p-4 m2 rounded dark:bg-indigo-900 dark:text-indigo-300 mt-6 ">
+          <div className="inline-flex items-center bg-green opacity-55 text-floral-white font-bold text-s font-medium p-4 m2 rounded dark:bg-indigo-900 dark:text-indigo-300 mt-6 ">
             <h2 className="mx-6">
               <Link to={`/inputs/${input._id}`}>
                 {new Date(input.date).toLocaleDateString()}

@@ -17,7 +17,7 @@ const Moods = () => {
 
   return (
     <fieldset>
-      <ul className="grid grid-cols-2 md:grid-cols-3 gap-6 w-full">
+      <ul className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-6 w-full lg:w-1/2 mx-auto">
         {moods.map((mood) => (
           <li key={mood._id}>
             <input
@@ -29,7 +29,7 @@ const Moods = () => {
             />
             <label
               htmlFor={mood._id}
-              className="inline-flex flex-col items-center justify-center w-full h-40 p-3 text-center text-floral-white bg-periwinkle opacity-60 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:bg-cambridge-blue hover:text-gray-600 dark:peer-checked:text-blue-200 peer-checked:font-bold hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+              className="inline-flex flex-col items-center justify-center w-full h-40 p-3 text-center text-floral-white bg-periwinkle opacity-60 rounded-lg cursor-pointer shadow-not-selected peer-checked:shadow-selected-box peer-checked:font-bold peer-checked:bg-green dark:hover:text-gray-300 dark:border-gray-700  hover:text-gray-600 dark:peer-checked:text-blue-200  hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
             >
               <div className="block">
                 <div className="w-full text-lg ">{mood.name}</div>
