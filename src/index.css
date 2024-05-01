@@ -58,10 +58,10 @@ h1 {
     display: none;
   }
 }
-
+/*
 @media (max-width: 640px) {
   .button-navbott {
     height: 5rem;
-    /* width: 20rem; */
+    width: 5rem;
   }
-}
+} */
