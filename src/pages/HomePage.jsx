@@ -23,21 +23,23 @@ function HomePage() {
           <>
             {/* <CalendarComponent onChange={handleDateClick} value={value} /> */}
             <h1 className="text-7xl font-bold text-periwinkle">HELLO</h1>
-            <h2 className="mb-12 text-5xl mb-4 text-dark-blue">{user.name}</h2>
-            <p className="mt-10 mb-10 font-medium">
+            <h2 className="mt-4 mb-12 text-5xl mb-4 font-semibold text-dark-blue">
+              {user.name}
+            </h2>
+            <p className="mt-4 mb-10 text-lg font-medium">
               HOW ARE YOU FEELING TODAY ?
             </p>
             <p>
               <Link
                 to="/inputs"
-                className="mt-10 text-floral-white font-bold bg-green opacity-50 shadow-not-selected rounded-full text-sm px-5 py-3 me-2 mb-2"
+                className="mt-10 text-floral-white font-bold text-lg bg-green shadow-not-selected rounded-full px-6 py-4 mb-2"
               >
                 All your entries
               </Link>
             </p>
             <Link
               to="/add-input"
-              className="mt-6 text-floral-white font-bold bg-green opacity-50 shadow-not-selected rounded-full text-sm px-5 py-2.5 me-2 mb-2"
+              className="mt-10 text-floral-white font-bold bg-green shadow-not-selected rounded-full text-lg px-5 py-3 mb-2"
             >
               Add a new entry
             </Link>{" "}
@@ -64,7 +66,7 @@ function HomePage() {
                 </p>{" "}
                 <Link
                   to="/login"
-                  className="w-full mt-6 text-center text-floral-white bg-green opacity-50 shadow-not-selected focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                  className="w-full mt-6 text-center text-floral-white bg-green shadow-not-selected focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                 >
                   Login
                 </Link>

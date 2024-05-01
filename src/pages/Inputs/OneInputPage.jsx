@@ -60,7 +60,7 @@ function OneInputPage() {
           Ingredients added
         </h3>
         <div className="flex justify-center w-full">
-          <div className="w-full flex items-start overflow-y-auto w-full h-40 p-3 text-start text-floral-white bg-green opacity-30 rounded-lg cursor-pointer overflow-hidden dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 peer-checked:bg-blue-50 hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:peer-checked:text-blue-200 peer-checked:text-blue-600">
+          <div className="w-full flex items-start overflow-y-auto w-full h-40 p-3 text-start text-floral-white bg-green rounded-lg cursor-pointer overflow-hidden dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 peer-checked:bg-blue-50 hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:peer-checked:text-blue-200 peer-checked:text-blue-600">
             {oneInput.ingredient && oneInput.ingredient.length > 0 ? (
               <ul>
                 {oneInput.ingredient.map((item, index) => (
@@ -104,7 +104,7 @@ function OneInputPage() {
         <h3 className="mt-10 mb-6 text-2xl font-bold text-dark-blue mb-2">
           Moods Added:
         </h3>
-        <div className="w-full flex items-start overflow-y-auto w-full h-40 p-3 text-start text-floral-white bg-green opacity-30 rounded-lg cursor-pointer overflow-hidden dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 peer-checked:bg-blue-50 hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:peer-checked:text-blue-200 peer-checked:text-blue-600">
+        <div className="w-full flex items-start overflow-y-auto w-full h-40 p-3 text-start text-floral-white bg-green rounded-lg cursor-pointer overflow-hidden dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 peer-checked:bg-blue-50 hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:peer-checked:text-blue-200 peer-checked:text-blue-600">
           {oneInput.mood && oneInput.mood.length > 0 ? (
             <ul>
               {oneInput.mood.map((mood) => (
@@ -126,7 +126,7 @@ function OneInputPage() {
         <h3 className="mt-10 mb-6 text-2xl font-bold text-dark-blue mb-2">
           Symtpoms Added:
         </h3>
-        <div className="w-full flex items-start overflow-y-auto w-full h-40 p-3 text-start text-floral-white bg-green opacity-30 rounded-lg cursor-pointer overflow-hidden dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 peer-checked:bg-blue-50 hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:peer-checked:text-blue-200 peer-checked:text-blue-600">
+        <div className="w-full flex items-start overflow-y-auto w-full h-40 p-3 text-start text-floral-white bg-green rounded-lg cursor-pointer overflow-hidden dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 peer-checked:bg-blue-50 hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:peer-checked:text-blue-200 peer-checked:text-blue-600">
           {oneInput.symptom.length > 0 ? (
             <ul>
               {oneInput.symptom.map((symptom) => (
@@ -146,7 +146,7 @@ function OneInputPage() {
 
       <button
         onClick={handleDelete}
-        className="text-center mt-10 mb-40 text-floral-white bg-green opacity-50 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mb-4 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+        className="text-center mt-10 mb-40 text-floral-white bg-green focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mb-4 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
       >
         Remove Input
       </button>

@@ -75,7 +75,7 @@ const InputForm = () => {
             value={date}
             onChange={(e) => setDate(e.target.value)}
             required
-            className="text-center font-bold text-green bg-whitee border border-periwinkle text-gray-900 text-sm rounded-lg focus:outline-none block w-full ps-10 p-2.5"
+            className="text-center font-bold text-green bg-whitee border border-periwinkle text-gray-900 text-lg shadow-custom rounded-lg focus:outline-none block w-full ps-10 p-2.5"
           />
         </div>
 
