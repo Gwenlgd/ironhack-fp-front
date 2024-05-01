@@ -32,7 +32,7 @@ import Symptoms from "./pages/Symptoms/Symptoms";
 import LayoutContainer from "./components/Layout/LayoutContainer";
 import TopNavbar from "./components/Navbar/TopNavBar";
 import IngredientsPage from "./pages/Ingredients/IngredientsPage";
-import IngredientDetail from "./pages/Ingredients/IngredientDetail";
+// import IngredientDetail from "./pages/Ingredients/IngredientDetail";
 import InitialSplashScreen from "./components/SplashScreens/InitialSplashScreen";
 import { IngredientProvider } from "./context/IngredientContext";
 import IngredientsResults from "./pages/Ingredients/IngredientsResults";
@@ -65,10 +65,10 @@ function App() {
                 <Route path="/calendar" element={<CalendarComponent />} />
                 <Route path="/ingredients" element={<Ingredients />} />
                 <Route path="/ingredientspage" element={<IngredientsPage />} />
-                <Route
+                {/* <Route
                   path="/ingredientdetail"
                   element={<IngredientDetail />}
-                />
+                /> */}
                 <Route path="/moods" element={<Moods />} />
                 <Route path="/symptoms" element={<Symptoms />} />
 

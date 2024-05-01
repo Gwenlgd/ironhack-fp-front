@@ -172,3 +172,23 @@ const IngredientsPage = () => {
 };
 
 export default IngredientsPage;
+
+//
+
+// {searchTerm && (
+//   <div className="">
+//     <ul
+//       className="overflow-y-auto text-floral-white bg-green opacity-50 rounded-lg"
+//       style={{ maxHeight: "60vh" }}
+//     >
+//       {searchResults.map((ingredient) => (
+//         <li
+//           key={ingredient._id}
+//           onClick={() => addIngredient(ingredient)}
+//         >
+//           {ingredient.name}
+//         </li>
+//       ))}
+//     </ul>
+//   </div>
+// )}

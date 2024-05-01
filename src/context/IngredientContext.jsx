@@ -70,6 +70,7 @@ const IngredientProvider = ({ children }) => {
         fetchIngredients,
         fetchSearchResults,
         loading,
+        setLoading,
         error,
       }}
     >

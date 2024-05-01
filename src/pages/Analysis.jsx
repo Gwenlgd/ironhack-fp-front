@@ -10,17 +10,17 @@ const AnalysisPage = () => {
         <>
           <div className="max-w-lg mx-auto flex flex-col items-center h-screen">
             <div
-              className=" bg-white rounded-lg shadow-custom p-6"
+              className=" bg-white rounded-lg shadow-not-selected p-6"
               style={{ height: "80vh", width: "100%" }}
             >
               <div className="mt-20 flex flex-col items-center">
-                <h2 className="mt-16 text-4xl font-semibold text-green">
+                <h2 className="mt-16 text-center text-4xl font-semibold text-green">
                   Sorry, {user.name} 😢
                 </h2>
-                <h1 className="mt-10 text-4xl font-bold text-periwinkle">
+                <h1 className="mt-10 text-center text-4xl font-bold text-periwinkle">
                   It's coming soon !
                 </h1>
-                <h2 className="mt-10 text-2xl text-center text-dark-bluye">
+                <h2 className="mt-10 text-2xl text-center text-dark-blue">
                   The feature is going to be available very soon
                 </h2>
               </div>

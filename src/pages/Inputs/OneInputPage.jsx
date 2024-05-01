@@ -134,7 +134,7 @@ function OneInputPage() {
                   key={symptom._id}
                   className="text-floral-white font-bold text-lg"
                 >
-                  {symptom.name}{" "}
+                  {symptom.name}
                 </li>
               ))}
             </ul>
