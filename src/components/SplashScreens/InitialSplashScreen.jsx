@@ -8,7 +8,7 @@ import letter5 from "../../assets/letter5.svg";
 
 function InitialSplashScreen() {
   return (
-    <div className="initial-splash-screen bg-gradient-to-b from-periwinkle to-dark-blue opacity-60 ">
+    <div className="initial-splash-screen bg-gradient-to-b from-floral-white to-whitee opacity-60 ">
       <div className="intro-wrapper">
         <div className="logo">
           <svg width="100vw" height="100vh" viewBox="0 0 100 100">
@@ -20,7 +20,6 @@ function InitialSplashScreen() {
                 height="40"
                 width="40"
                 preserveAspectRatio="xMidYMid meet"
-                className="bg-floral-white"
               />
               <image
                 href={letter2}

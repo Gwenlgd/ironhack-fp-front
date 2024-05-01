@@ -34,13 +34,14 @@ import TopNavbar from "./components/Navbar/TopNavBar";
 import IngredientsPage from "./pages/Ingredients/IngredientsPage";
 import IngredientDetail from "./pages/Ingredients/IngredientDetail";
 import InitialSplashScreen from "./components/SplashScreens/InitialSplashScreen";
+import { IngredientProvider } from "./context/IngredientContext";
 
 function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Change time after finishing style
-    const timer = setTimeout(() => setLoading(false), 3000);
+    const timer = setTimeout(() => setLoading(false), 5000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -52,40 +53,45 @@ function App() {
     <>
       <ErrorBoundary>
         <InputProvider>
-          <TopNavbar />
-          <BottomNavbar />
-          <LayoutContainer>
-            <Routes>
-              <Route path="/" element={<HomePage />}></Route>
-              <Route path="/profil" element={<ProfilePage />} />
-              <Route path="/calendar" element={<CalendarComponent />} />
-              <Route path="/ingredients" element={<Ingredients />} />
-              <Route path="/ingredientspage" element={<IngredientsPage />} />
-              <Route path="/ingredientdetail" element={<IngredientDetail />} />
-              <Route path="/moods" element={<Moods />} />
-              <Route path="/symptoms" element={<Symptoms />} />
-
-              <Route element={<IsLoggedOut />}>
-                <Route path="/signup" element={<SignupPage />} />
-                <Route path="/login" element={<LoginPage />} />
-              </Route>
-
-              <Route element={<ProtectedRoute />}>
-                <Route path="/inputs" element={<InputsPage />} />
-                <Route path="/add-input" element={<InputForm />} />
-                <Route path="/inputs/:inputId" element={<OneInputPage />} />
+          <IngredientProvider>
+            <TopNavbar />
+            <BottomNavbar />
+            <LayoutContainer>
+              <Routes>
+                <Route path="/" element={<HomePage />}></Route>
+                <Route path="/profil" element={<ProfilePage />} />
+                <Route path="/calendar" element={<CalendarComponent />} />
+                <Route path="/ingredients" element={<Ingredients />} />
+                <Route path="/ingredientspage" element={<IngredientsPage />} />
                 <Route
-                  path="/inputs/update/:inputId"
-                  element={<UpdateOneInput />}
+                  path="/ingredientdetail"
+                  element={<IngredientDetail />}
                 />
-              </Route>
+                <Route path="/moods" element={<Moods />} />
+                <Route path="/symptoms" element={<Symptoms />} />
 
-              <Route
-                path="/ingredients/:ingredientId"
-                element={<OneIngredientPage />}
-              />
-            </Routes>
-          </LayoutContainer>
+                <Route element={<IsLoggedOut />}>
+                  <Route path="/signup" element={<SignupPage />} />
+                  <Route path="/login" element={<LoginPage />} />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/inputs" element={<InputsPage />} />
+                  <Route path="/add-input" element={<InputForm />} />
+                  <Route path="/inputs/:inputId" element={<OneInputPage />} />
+                  <Route
+                    path="/inputs/update/:inputId"
+                    element={<UpdateOneInput />}
+                  />
+                </Route>
+
+                <Route
+                  path="/ingredients/:ingredientId"
+                  element={<OneIngredientPage />}
+                />
+              </Routes>
+            </LayoutContainer>
+          </IngredientProvider>
         </InputProvider>
       </ErrorBoundary>
     </>
