@@ -29,7 +29,7 @@ const Moods = () => {
             />
             <label
               htmlFor={mood._id}
-              className="inline-flex flex-col items-center justify-center w-full h-40 p-3 text-center text-floral-white bg-periwinkle opacity-60 rounded-lg cursor-pointer shadow-not-selected peer-checked:shadow-selected-box peer-checked:font-bold peer-checked:bg-green dark:hover:text-gray-300 dark:border-gray-700  hover:text-gray-600 dark:peer-checked:text-blue-200  hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+              className="inline-flex flex-col items-center justify-center w-full h-40 p-3 text-center text-dark-blue bg-periwinkle rounded-lg cursor-pointer shadow-not-selected peer-checked:shadow-selected-box peer-checked:font-bold peer-checked:text-floral-white  peer-checked:bg-dark-blue peer-checked:opacity-80"
             >
               <div className="block">
                 <div className="w-full text-lg ">{mood.name}</div>

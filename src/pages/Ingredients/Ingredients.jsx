@@ -50,6 +50,8 @@ const Ingredients = () => {
   const handleIngredientSelect = (ingredient, e) => {
     e.stopPropagation();
     addIngredient(ingredient);
+    setInputValue("");
+    setIsDropdownVisible(false);
   };
 
   // const closeDropdown = () => {

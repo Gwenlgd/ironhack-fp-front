@@ -15,8 +15,8 @@ const CategorySwitcher = ({ currentCategory, setCurrentCategory }) => {
               type="button"
               className={`inline-block px-4 py-3 rounded-lg text-white shadow-not-selected ${
                 currentCategory === "ingredients"
-                  ? "text-floral-white font-bold bg-green opacity-50 shadow-selected"
-                  : "bg-periwinkle opacity-70 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
+                  ? "text-floral-white uppercase font-bold text-sm bg-green shadow-selected"
+                  : "bg-periwinkle uppercase text-sm"
               }`}
               onClick={() => handleSetCategory("ingredients")}
             >
@@ -28,8 +28,8 @@ const CategorySwitcher = ({ currentCategory, setCurrentCategory }) => {
               type="button"
               className={`inline-block px-4 py-3 rounded-lg text-white shadow-not-selected ${
                 currentCategory === "moods"
-                  ? "text-floral-white font-bold bg-green opacity-50 shadow-selected"
-                  : "bg-periwinkle opacity-70 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
+                  ? "text-floral-white uppercase font-bold text-sm bg-green shadow-selected"
+                  : "bg-periwinkle uppercase text-sm"
               }`}
               onClick={() => handleSetCategory("moods")}
             >
@@ -41,8 +41,8 @@ const CategorySwitcher = ({ currentCategory, setCurrentCategory }) => {
               type="button"
               className={`inline-block px-4 py-3 rounded-lg text-white shadow-not-selected ${
                 currentCategory === "symptoms"
-                  ? "text-floral-white font-bold  bg-green opacity-50 shadow-selected"
-                  : "bg-periwinkle opacity-70 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
+                  ? "text-floral-white uppercase font-bold text-sm bg-green shadow-selected"
+                  : "bg-periwinkle uppercase text-sm"
               }`}
               onClick={() => handleSetCategory("symptoms")}
             >

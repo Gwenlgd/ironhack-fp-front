@@ -35,6 +35,8 @@ import IngredientsPage from "./pages/Ingredients/IngredientsPage";
 import IngredientDetail from "./pages/Ingredients/IngredientDetail";
 import InitialSplashScreen from "./components/SplashScreens/InitialSplashScreen";
 import { IngredientProvider } from "./context/IngredientContext";
+import IngredientsResults from "./pages/Ingredients/IngredientsResults";
+import AnalysisPage from "./pages/Analysis";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -89,6 +91,8 @@ function App() {
                   path="/ingredients/:ingredientId"
                   element={<OneIngredientPage />}
                 />
+                <Route path="/results" element={<IngredientsResults />} />
+                <Route path="/analysis" element={<AnalysisPage />} />
               </Routes>
             </LayoutContainer>
           </IngredientProvider>

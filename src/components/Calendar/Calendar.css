@@ -1,5 +1,7 @@
 .react-calendar {
   border: none;
+  border-radius: 15px;
+  padding: 1.3rem;
   /* background-color: white; */
   font-weight: bolder;
   font-size: 1.2rem;

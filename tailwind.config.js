@@ -12,7 +12,7 @@ export default {
       'rich-black': '#121722',
       'periwinkle': '#B7C0EE',
       'dark-blue': '#495B88',
-      'green': '#74A57F',
+      'green': '#9CBFA4',
       'burgundy': '#93032E',
       'coral': '#EF8354',
       'moss-green': '#918868',
