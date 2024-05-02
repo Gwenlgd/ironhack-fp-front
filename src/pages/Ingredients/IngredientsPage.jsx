@@ -168,16 +168,16 @@ const IngredientsPage = () => {
 
         {/* Category Tabs */}
         <div
-          className=" flex overflow-x-auto no-scrollbar p-1 mx-auto my-10 rounded-lg gap-4"
-          style={{ height: "70px" }}
+          className=" flex overflow-x-auto no-scrollbar p-1 mx-auto mt-10 rounded-lg gap-4"
+          style={{ height: "100px" }}
         >
           {uniqueCategories.map((category, index) => (
             <button
               key={index}
-              className={` min-w-min px-4 py-1 rounded-lg text-sm whitespace-nowrap  ${
+              className={` min-w-min px-4 py-1 rounded-lg text-xl font-semibold whitespace-nowrap  ${
                 selectedCategory === category
-                  ? "bg-green opacity-60 text-floral-white"
-                  : "bg-periwinkle opacity-70 text-dark-blue hover:text-gray-900 hover:bg-gray-200"
+                  ? "bg-green opacity-70 text-floral-white"
+                  : "bg-periwinkle opacity-40 text-dark-blue hover:text-gray-900 hover:bg-gray-200"
               }`}
               style={{ width: "200px" }}
               onClick={() => handleCategorySelect(category)}
@@ -189,9 +189,9 @@ const IngredientsPage = () => {
 
         {/* Ingredients List */}
         {selectedCategory && !searchTerm && (
-          <div className="mt-10">
+          <div className="">
             <ul
-              className="overflow-y-auto text-floral-white bg-green opacity-50 rounded-lg"
+              className="overflow-y-auto text-floral-white bg-green opacity-70 text-lg font-semibold rounded-lg"
               style={{ maxHeight: "60vh" }}
             >
               {categoryIngredients.map((ingredient) => (
