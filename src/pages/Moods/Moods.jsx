@@ -37,11 +37,10 @@ const Moods = () => {
             >
               <div className="block">
                 {/* <div className="w-full text-lg ">{mood.name}</div> */}
-                <h1 className="w-full text-5xl mb-4">
+                <h1 className="w-full text-5xl mb-4 ">
                   {renderEmoji(mood.icon)}
                 </h1>
-                <h2 className="w-full text-lg text-dark-blue uppercase">
-                  {" "}
+                <h2 className="w-full text-lg text-dark-blue uppercas  peer-checked:text-floral-white ">
                   {mood.name}
                 </h2>
               </div>
