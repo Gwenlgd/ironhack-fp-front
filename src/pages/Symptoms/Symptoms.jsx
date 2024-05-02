@@ -24,6 +24,10 @@ const Symptoms = () => {
     );
   };
 
+  const renderEmoji = (icon) => {
+    return String.fromCodePoint(parseInt(icon, 16));
+  };
+
   return (
     <fieldset>
       {Object.entries(symptomsByCategory).map(
@@ -47,6 +51,9 @@ const Symptoms = () => {
                     className="inline-flex flex-col items-center justify-center w-full h-40 p-3 text-center text-dark-blue bg-periwinkle rounded-lg cursor-pointer shadow-not-selected peer-checked:shadow-selected-box peer-checked:font-bold  peer-checked:text-floral-white peer-checked:bg-dark-blue peer-checked:opacity-80"
                   >
                     <div className="block">
+                      <h1 className="w-full text-5xl mb-4">
+                        {renderEmoji(symptom.icon)}
+                      </h1>
                       <div className="w-full text-lg">{symptom.name}</div>
                     </div>
                   </label>

@@ -124,7 +124,7 @@ function OneInputPage() {
 
       <div className=" w-full flex flex-col items-center justify-center">
         <h3 className="mt-10 mb-6 text-2xl font-bold text-dark-blue mb-2">
-          Symtpoms Added:
+          Symptoms Added:
         </h3>
         <div className="w-full flex items-start overflow-y-auto w-full h-40 p-3 text-start text-floral-white bg-green rounded-lg cursor-pointer overflow-hidden dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 peer-checked:bg-blue-50 hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:peer-checked:text-blue-200 peer-checked:text-blue-600">
           {oneInput.symptom.length > 0 ? (

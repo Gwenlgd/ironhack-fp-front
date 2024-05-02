@@ -77,7 +77,7 @@ function InputsPage() {
           >
             <div
               // className="inline-flex justify-between items-center w-full max-w-xl bg-green text-floral-white text-lg p-6 rounded text-center"
-              className="inline-flex justify-between items-center max-w-xl bg-dark-blue opacity-90 text-floral-white text-lg p-6 rounded text-center"
+              className="inline-flex justify-between items-center max-w-xl bg-dark-blue opacity-90 shadow-selected text-floral-white text-lg p-6 rounded text-center"
               style={{ minWidth: "330px" }}
             >
               <h2 className="font-bold flex-grow">

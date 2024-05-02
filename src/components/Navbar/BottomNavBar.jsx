@@ -120,7 +120,8 @@ function BottomNavbar() {
               onClick={handleNewEntryClick}
               data-tooltip-target="tooltip-new"
               type="button"
-              className="button-navbott inline-flex items-center justify-center w-20 h-20 shadow-button-two text-white bg-periwinkle shadow-lg rounded-full -mt-5"
+              className="button-navbott inline-flex items-center justify-center shadow-button-two text-white bg-periwinkle hover:bg-periwinkle-dark focus:outline-none focus:ring-2 focus:ring-periwinkle-light shadow-lg rounded-full -mt-5"
+              style={{ width: "80px", height: "80px", borderRadius: "9999px" }}
             >
               <svg
                 className="w-6 h-6 text-floral-white"
