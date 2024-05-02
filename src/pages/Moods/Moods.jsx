@@ -33,16 +33,16 @@ const Moods = () => {
             />
             <label
               htmlFor={mood._id}
-              className="inline-flex flex-col items-center justify-center w-full h-40 p-3 text-center text-dark-blue bg-periwinkle rounded-lg cursor-pointer shadow-not-selected peer-checked:shadow-selected-box peer-checked:font-bold peer-checked:text-floral-white  peer-checked:bg-dark-blue peer-checked:opacity-80"
+              className="inline-flex flex-col items-center justify-center w-full h-40 p-3 text-center text-dark-blue bg-periwinkle rounded-lg cursor-pointer shadow-not-selected peer-checked:shadow-selected-box peer-checked:font-bold  peer-checked:text-floral-white peer-checked:bg-dark-blue peer-checked:opacity-80"
             >
               <div className="block">
                 {/* <div className="w-full text-lg ">{mood.name}</div> */}
                 <h1 className="w-full text-5xl mb-4 ">
                   {renderEmoji(mood.icon)}
                 </h1>
-                <h2 className="w-full text-lg text-dark-blue uppercas  peer-checked:text-floral-white ">
+                <div className="w-full text-lg peer-checked:font-bold ">
                   {mood.name}
-                </h2>
+                </div>
               </div>
             </label>
           </li>
