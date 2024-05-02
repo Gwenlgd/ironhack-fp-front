@@ -31,7 +31,7 @@ const AnalysisPage = () => {
         <div className="max-w-lg mx-auto flex flex-col items-center h-screen">
           <div
             className=" bg-white rounded-lg  shadow-custom p-6 "
-            style={{ height: "80vh", width: "100%" }}
+            style={{ height: "85vh", width: "100%" }}
           >
             <div className="w-full flex flex-col items-center p-8">
               <h1 className="m-6 text-4xl font-bold text-periwinkle ">
@@ -45,13 +45,13 @@ const AnalysisPage = () => {
               </p>
               <Link
                 to="/signup"
-                className="w-full mt-10 text-center text-floral-white bg-green shadow-not-selected focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                className="w-full mt-10 text-center text-floral-white bg-green shadow-not-selected focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-semibold rounded-lg text-lg px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
               >
                 Signup
               </Link>
               <Link
                 to="/login"
-                className="w-full mt-10 text-center text-floral-white bg-green shadow-not-selected focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                className="w-full mt-10 text-center text-floral-white bg-green shadow-not-selected focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-semibold rounded-lg text-lg px-5 py-2.5 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
               >
                 Login
               </Link>
