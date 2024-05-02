@@ -15,6 +15,10 @@ const Moods = () => {
     );
   };
 
+  const renderEmoji = (icon) => {
+    return String.fromCodePoint(parseInt(icon, 16));
+  };
+
   return (
     <fieldset>
       <ul className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-6 w-full lg:w-1/2 mx-auto">
@@ -32,7 +36,14 @@ const Moods = () => {
               className="inline-flex flex-col items-center justify-center w-full h-40 p-3 text-center text-dark-blue bg-periwinkle rounded-lg cursor-pointer shadow-not-selected peer-checked:shadow-selected-box peer-checked:font-bold peer-checked:text-floral-white  peer-checked:bg-dark-blue peer-checked:opacity-80"
             >
               <div className="block">
-                <div className="w-full text-lg ">{mood.name}</div>
+                {/* <div className="w-full text-lg ">{mood.name}</div> */}
+                <h1 className="w-full text-5xl mb-4">
+                  {renderEmoji(mood.icon)}
+                </h1>
+                <h2 className="w-full text-lg text-dark-blue uppercase">
+                  {" "}
+                  {mood.name}
+                </h2>
               </div>
             </label>
           </li>
