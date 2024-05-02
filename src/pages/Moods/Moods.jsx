@@ -21,7 +21,7 @@ const Moods = () => {
 
   return (
     <fieldset>
-      <ul className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-6 w-full lg:w-1/2 mx-auto">
+      <ul className="grid grid-cols-2 md:grid-cols-3 mt-14 gap-x-6 gap-y-6 w-full lg:w-1/2 mx-auto">
         {moods.map((mood) => (
           <li key={mood._id}>
             <input

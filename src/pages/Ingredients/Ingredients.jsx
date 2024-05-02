@@ -138,7 +138,7 @@ const Ingredients = () => {
               placeholder="Search ingredient..."
               onChange={handleInputIngrChange}
               autoComplete="off"
-              className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
             />
           </div>
 
@@ -168,12 +168,15 @@ const Ingredients = () => {
                 </svg>
               </button>
             </div> */}
-              <ul className="min-h-40 max-h-40 overflow-y-auto bg-whitee">
+              <ul
+                className="min-h-40 max-h-40 w-full overflow-y-auto bg-periwinkle"
+                style={{ width: "350px" }}
+              >
                 {filteredIngredients.map((ingredient) => (
                   <li
                     key={ingredient._id}
                     onClick={(e) => handleIngredientSelect(ingredient, e)}
-                    className={`px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer ${
+                    className={`px-2 py-2 font-semibold cursor-pointer ${
                       isIngredientSelected(ingredient)
                         ? "bg-green opacity-50  text-floral-white dark:bg-blue-800"
                         : ""
