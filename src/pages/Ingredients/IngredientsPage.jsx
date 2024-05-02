@@ -5,18 +5,23 @@ import { useInput } from "../../context/InputContext";
 import useOutsideAlerter from "../../hooks/useOutsideAlerter";
 
 const IngredientsPage = () => {
+  const [inputValue, setInputValue] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
   const [uniqueCategories, setUniqueCategories] = useState([]);
+  const [filteredIngredients, setFilteredIngredients] = useState([]);
   const [categoryIngredients, setCategoryIngredients] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [ingredientsListSearch, setIngredientsListSearch] = useState([]);
   // const [selectedIngredients, setSelectedIngredients] = useState([]);
 
+  const dropdownRef = useRef(null);
+  useOutsideAlerter(dropdownRef, () => setIsDropdownVisible(false));
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  const dropdownRef = useRef(null);
 
   const navigate = useNavigate();
 
@@ -26,8 +31,6 @@ const IngredientsPage = () => {
     addIngredient,
     fetchIngredients,
   } = useInput();
-
-  useOutsideAlerter(dropdownRef, () => setSelectedCategory(null));
 
   useEffect(() => {
     fetchIngredients();
@@ -50,6 +53,14 @@ const IngredientsPage = () => {
   }, [selectedCategory, ingredientsList]);
 
   useEffect(() => {
+    setFilteredIngredients(
+      ingredientsList.filter((ingredient) =>
+        ingredient.name.toLowerCase().includes(inputValue.toLowerCase())
+      )
+    );
+  }, [inputValue, ingredientsList]);
+
+  useEffect(() => {
     if (searchTerm) {
       const results = ingredientsList.filter((ingredient) => {
         // Check each benefit and ensure it is a string before calling toLowerCase()
@@ -64,6 +75,11 @@ const IngredientsPage = () => {
       setSearchResults([]);
     }
   }, [searchTerm, ingredientsList]);
+
+  const handleInputIngrChange = (e) => {
+    setInputValue(e.target.value);
+    setIsDropdownVisible(true);
+  };
 
   const fetchSearchResults = useCallback(async (searchTerm) => {
     setLoading(true);
@@ -100,13 +116,22 @@ const IngredientsPage = () => {
   };
 
   const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
+    setSelectedCategory((prevCategory) =>
+      prevCategory === category ? null : category
+    );
     setSearchTerm("");
   };
 
   const handleIngredientSelect = (ingredient, e) => {
     e.stopPropagation();
     addIngredient(ingredient);
+  };
+
+  const handleIngredientSelectSearch = (ingredient, e) => {
+    e.stopPropagation();
+    addIngredient(ingredient);
+    setInputValue("");
+    setIsDropdownVisible(false);
   };
 
   const isIngredientSelected = (ingredient) =>
@@ -138,10 +163,11 @@ const IngredientsPage = () => {
           </div>
           <input
             type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            value={inputValue}
+            onChange={handleInputIngrChange}
+            onFocus={() => setIsDropdownVisible(true)}
             placeholder="Search by benefits..."
-            className="block w-full p-4 ps-10 text-green bg-whitee border-2 border-periwinkle text-gray-900 text-sm rounded-l-lg focus:outline-none block w-full"
+            className="block w-full p-4 ps-10 text-sm text-gray-900 border-2 border-periwinkle rounded-l-lg bg-gray-50"
           />
           <button
             onClick={handleSearch}
@@ -149,20 +175,32 @@ const IngredientsPage = () => {
           >
             Search
           </button>
-          {searchTerm && (
-            <ul className="mt-2">
-              {searchResults.map((ingredient) => (
-                <li
-                  key={ingredient.id}
-                  onClick={(e) => handleIngredientSelect(ingredient, e)}
-                  className={`px-2 py-2 hover:bg-gray-100 cursor-pointer ${
-                    isIngredientSelected(ingredient) ? "bg-blue-100" : ""
-                  }`}
-                >
-                  {ingredient.name}
-                </li>
-              ))}
-            </ul>
+          {inputValue && isDropdownVisible && (
+            <div
+              className="absolute z-10 mt-16 max-w-xs mx-auto sm:max-w-sm md:max-w-md bg-white rounded-lg shadow w-full mt-1 dark:bg-gray-700"
+              ref={dropdownRef}
+            >
+              <ul
+                className=" absolute min-h-60 max-h-60 w-full overflow-y-auto bg-periwinkle"
+                style={{ width: "350px" }}
+              >
+                {filteredIngredients.map((ingredient) => (
+                  <li
+                    key={ingredient._id}
+                    onClick={(e) => handleIngredientSelectSearch(ingredient, e)}
+                    className={`px-2 py-2 font-semibold cursor-pointer ${
+                      isIngredientSelected(ingredient)
+                        ? "bg-green opacity-50  text-floral-white dark:bg-blue-800"
+                        : ""
+                    }`}
+                  >
+                    <Link to={`/ingredients/${ingredient._id}`}>
+                      <h2 className="font-semibold">{ingredient.name}</h2>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </div>
 
@@ -192,7 +230,7 @@ const IngredientsPage = () => {
           <div className="">
             <ul
               className="overflow-y-auto text-floral-white bg-green opacity-70 text-lg font-semibold rounded-lg"
-              style={{ maxHeight: "60vh" }}
+              style={{ maxHeight: "70vh" }}
             >
               {categoryIngredients.map((ingredient) => (
                 <li
