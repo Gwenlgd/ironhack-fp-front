@@ -49,9 +49,9 @@ function InputsPage() {
   };
 
   return (
-    <div className="max-w-lg mx-auto flex flex-col items-center justify-center">
+    <div className="max-w-lg mx-auto flex flex-col items-center justify-center mb-40">
       {showConfirmation && (
-        <div className="fixed inset-0 bg-gray-600 flex justify-center items-center z-50 ">
+        <div className="fixed inset-0 bg-gray-600 flex justify-center items-center z-50 mb-60 overflow-y">
           <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center bg-whitee">
             <h4 className="text-periwinkle text-lg font-bold ">
               Entry deleted successfully!

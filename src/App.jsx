@@ -43,13 +43,13 @@ function App() {
 
   useEffect(() => {
     // Change time after finishing style
-    const timer = setTimeout(() => setLoading(false), 5000);
+    const timer = setTimeout(() => setLoading(false), 6000);
     return () => clearTimeout(timer);
   }, []);
 
-  // if (loading) {
-  //   return <InitialSplashScreen />;
-  // }
+  if (loading) {
+    return <InitialSplashScreen />;
+  }
 
   return (
     <>
