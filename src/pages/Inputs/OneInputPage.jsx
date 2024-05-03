@@ -41,6 +41,10 @@ function OneInputPage() {
     }
   };
 
+  const renderEmoji = (icon) => {
+    return String.fromCodePoint(parseInt(icon, 16));
+  };
+
   if (deleted) {
     return <p>Input deleted successfully. Redirecting...</p>;
   }
@@ -60,7 +64,7 @@ function OneInputPage() {
           Ingredients added
         </h3>
         <div className="flex justify-center w-full">
-          <div className="w-full flex items-start overflow-y-auto w-full h-40 p-3 text-start text-floral-white bg-green rounded-lg cursor-pointer overflow-hidden dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 peer-checked:bg-blue-50 hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:peer-checked:text-blue-200 peer-checked:text-blue-600">
+          <div className="w-full flex items-start overflow-y-auto w-full h-60 p-3 text-start text-floral-white bg-green rounded-lg cursor-pointer overflow-hidden dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 peer-checked:bg-blue-50 hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:peer-checked:text-blue-200 peer-checked:text-blue-600">
             {oneInput.ingredient && oneInput.ingredient.length > 0 ? (
               <ul>
                 {oneInput.ingredient.map((item, index) => (
@@ -106,13 +110,15 @@ function OneInputPage() {
         </h3>
         <div className="w-full flex items-start overflow-y-auto w-full h-40 p-3 text-start text-floral-white bg-green rounded-lg cursor-pointer overflow-hidden dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 peer-checked:bg-blue-50 hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:peer-checked:text-blue-200 peer-checked:text-blue-600">
           {oneInput.mood && oneInput.mood.length > 0 ? (
-            <ul>
+            <ul className="flex">
               {oneInput.mood.map((mood) => (
                 <li
                   key={mood._id}
                   className="text-floral-white font-bold text-lg"
                 >
-                  {mood.name}{" "}
+                  <h1 className="w-full text-5xl mb-4 ">
+                    {renderEmoji(mood.icon)}
+                  </h1>{" "}
                 </li>
               ))}
             </ul>
@@ -128,13 +134,15 @@ function OneInputPage() {
         </h3>
         <div className="w-full flex items-start overflow-y-auto w-full h-40 p-3 text-start text-floral-white bg-green rounded-lg cursor-pointer overflow-hidden dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 peer-checked:bg-blue-50 hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:peer-checked:text-blue-200 peer-checked:text-blue-600">
           {oneInput.symptom.length > 0 ? (
-            <ul>
+            <ul className="flex">
               {oneInput.symptom.map((symptom) => (
                 <li
                   key={symptom._id}
                   className="text-floral-white font-bold text-lg"
                 >
-                  {symptom.name}
+                  <h1 className="w-full text-5xl mb-4">
+                    {renderEmoji(symptom.icon)}
+                  </h1>
                 </li>
               ))}
             </ul>
